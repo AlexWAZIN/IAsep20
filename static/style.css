@@ -1,0 +1,246 @@
+:root {
+  --azul-encabezado: #002B5B;
+  --azul-menu: #2D4059;
+  --crema: #F9F5EB;
+  --tinta: #1F2B3D;
+  --tinta-suave: #4A5A70;
+  --linea: rgba(45, 64, 89, 0.22);
+  --realce: #E8B04B;
+  --menu-alto: 3.5rem;
+
+  --fuente-titulos: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --fuente-texto: "Newsreader", Georgia, "Times New Roman", serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--tinta);
+  font-family: var(--fuente-texto);
+  font-size: 1.125rem;
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+  background: var(--azul-encabezado);
+  color: var(--crema);
+  padding: clamp(2.5rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 3rem) clamp(2rem, 6vw, 4rem);
+}
+
+.encabezado h1,
+.encabezado p {
+  max-width: 68rem;
+  margin-inline: auto;
+}
+
+.encabezado h1 {
+  margin-block: 0 0.75rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 9vw, 5.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.encabezado p {
+  margin-block: 0;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  opacity: 0.85;
+}
+
+/* ---------- Menú ---------- */
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--azul-menu);
+}
+
+.menu ul {
+  position: relative;
+  display: flex;
+  gap: 0.25rem;
+  margin: 0 auto;
+  padding: 0 clamp(0.5rem, 3vw, 2rem);
+  max-width: 76rem;
+  list-style: none;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  height: var(--menu-alto);
+  padding: 0 0.9rem;
+  color: #FFFFFF;
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.menu a:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+.menu a[aria-current="true"] {
+  font-weight: 700;
+  border-bottom-color: var(--realce);
+}
+
+.menu a:focus-visible,
+.pie a:focus-visible {
+  outline: 3px solid var(--realce);
+  outline-offset: -3px;
+}
+
+/* ---------- Contenido ---------- */
+.contenido {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 3rem;
+}
+
+.termino {
+  display: grid;
+  grid-template-columns: minmax(11rem, 17rem) minmax(0, 1fr);
+  gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
+  padding-block: 2.25rem;
+  border-top: 1px solid var(--linea);
+  scroll-margin-top: var(--menu-alto);
+}
+
+.termino:first-child { border-top: 0; }
+
+.termino__nombre h2 {
+  margin: 0;
+  color: var(--azul-encabezado);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1.2;
+}
+
+.termino__alias {
+  margin: 0.4rem 0 0;
+  color: var(--tinta-suave);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.termino__definicion {
+  margin: 0;
+  max-width: 62ch;
+  line-height: 1.7;
+}
+
+/* ---------- Pie ---------- */
+.pie {
+  padding: 0 clamp(1.25rem, 5vw, 3rem) 3rem;
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.pie a {
+  color: var(--azul-menu);
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+}
+
+/* ---------- Móvil ---------- */
+@media (max-width: 720px) {
+  .termino {
+    grid-template-columns: 1fr;
+    padding-block: 1.75rem;
+  }
+}
+.imagen-linea-tiempo {
+    width: 100%;       /* O ajusta a un valor fijo como 600px */
+    max-width: 800px;  /* Evita que se vuelva gigante en pantallas grandes */
+    height: auto;      /* Mantiene la proporción para que no se deforme */
+    display: block;
+    margin: 0 auto;    /* Opcional: la centra en la pantalla */
+}
+/* ==========================================
+   SUBSECCIONES INDIVIDUALES: TIPOS DE IA
+   ========================================== */
+
+.bloque-tipo-ia {
+  background-color: #ffffff;
+  border: 1px solid #e0dcd3;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.bloque-tipo-ia h3 {
+  color: #002B5B;
+  font-size: 1.35rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #f9f5eb;
+  padding-bottom: 0.4rem;
+}
+
+.bloque-tipo-ia p {
+  color: #2D4059;
+  margin-bottom: 1.2rem;
+}
+
+.contenedor-infografia-individual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #f9f5eb;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.imagen-infografia-gran-tamano {
+  width: 100%;
+  max-width: 900px; /* Tamaño amplio para ver con claridad */
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+/* ==========================================
+   ESTILOS DENTRO DEL GLOSARIO
+   ========================================== */
+
+/* Contenedor del recuadro de la imagen */
+.termino__imagen {
+  width: 100%;
+  max-width: 320px; /* Ancho máximo fijo para la imagen */
+  height: 220px;     /* Altura fija idéntica para todas */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: #f9f5eb;
+  border: 1px solid #e0dcd3;
+}
+
+/* Ajuste de la imagen dentro del contenedor */
+.imagen-concepto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ajusta y recorta la imagen proporcionalmente para llenar el contenedor */
+  object-position: center; /* Centra la imagen */
+  display: block;
+}
