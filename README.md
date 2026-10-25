@@ -51,32 +51,6 @@ proyecto/
 └── README.md
 ```
 
-## Instalación y ejecución
-
-1. Clona o descarga el proyecto.
-2. (Opcional) Crea y activa un entorno virtual:
-
-   ```bash
-   python -m venv venv
-   # Windows
-   venv\Scripts\activate
-   # macOS / Linux
-   source venv/bin/activate
-   ```
-
-3. Instala Flask:
-
-   ```bash
-   pip install flask
-   ```
-
-4. Ejecuta la aplicación:
-
-   ```bash
-   python app.py
-   ```
-
-5. Abre en el navegador: <http://127.0.0.1:5000>
 
 ## Cómo agregar o cambiar contenido
 
