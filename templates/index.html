@@ -11,157 +11,228 @@
 </head>
 <body>
 
-  <!-- ENCABEZADO (#002B5B) -->
+  <!-- ENCABEZADO -->
   <header class="encabezado" id="inicio">
     <h1>¿QUÉ ES LA IA?</h1>
     <p>Plataforma educativa sobre Inteligencia Artificial</p>
   </header>
 
-  <!-- MENÚ PRINCIPAL DE NAVEGACIÓN (#2D4059) -->
+  <!-- MENÚ PRINCIPAL -->
   <nav class="menu" aria-label="Navegación principal">
     <ul>
       <li><a href="#inicio-ia">Inicio</a></li>
       <li><a href="#linea-tiempo">Línea del Tiempo</a></li>
       <li><a href="#diagnostico">Diagnóstico</a></li>
       <li><a href="#tipos-ia">Tipos de IA</a></li>
+      <li><a href="#algoritmos">Algoritmos</a></li>
+      <li><a href="#ml-kids">Machine Learning for Kids</a></li>
+      <li><a href="#scratch">Reporte de Scratch</a></li>
       <li><a href="#glosario">Glosario</a></li>
     </ul>
   </nav>
 
-  <!-- CONTENIDO PRINCIPAL (#F9F5EB) -->
   <main class="contenido">
 
-    <!-- 1. SECCIÓN INICIO -->
+    <!-- 1. INICIO -->
     <section class="seccion" id="inicio-ia">
       <h2>1. ¿Qué es la Inteligencia Artificial?</h2>
       <p class="introduccion">
-        La Inteligencia Artificial (IA) es un campo de la informática que se encarga de crear sistemas y 
+        La Inteligencia Artificial (IA) es un campo de la informática que se encarga de crear sistemas y
         algoritmos capaces de realizar tareas que, normalmente, requerirían de la inteligencia humana. Estas tareas incluyen el aprendizaje, el razonamiento, la resolución de problemas, la comprensión del lenguaje natural y la percepción visual.
       </p>
     </section>
 
-    <!-- 2. SECCIÓN LÍNEA DEL TIEMPO -->
+    <!-- 2. LÍNEA DEL TIEMPO -->
     <section class="seccion" id="linea-tiempo">
       <h2>2. Línea del Tiempo de la IA</h2>
       <p>A continuación se presenta la evolución histórica de la inteligencia artificial:</p>
-      
-      <!-- Recuadro para subir tu foto de la línea del tiempo -->
-      <div class="contenedor-imagen">
-        <!-- Reemplaza 'linea_del_tiempo.png' por el nombre de tu archivo guardado en la carpeta static -->
-        <img src="{{ url_for('static', filename='LINEADELTIEMPO_AI.jpeg') }}" class="imagen-linea-tiempo" alt="Línea del tiempo">
-      </div>
+
+      <article class="tarjeta-imagen">
+        <div class="tarjeta-imagen__texto">
+          <h3>Evolución de la IA</h3>
+          <p>Recorrido por los hitos más importantes de la IA, desde el modelo de neurona artificial de 1943 hasta la IA generativa actual.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
+        </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: Línea del tiempo de la IA">
+          <img src="{{ url_for('static', filename='LINEADELTIEMPO_AI.jpeg') }}" alt="Línea del tiempo de la IA">
+        </button>
+      </article>
     </section>
 
-    <!-- 3. SECCIÓN DIAGNÓSTICO -->
+    <!-- 3. DIAGNÓSTICO -->
     <section class="seccion" id="diagnostico">
       <h2>3. Diagnóstico de la Línea del Tiempo</h2>
       <div class="bloque-preguntas">
         <p><strong>Preguntas y Evaluación:</strong></p>
-        
+
         <div class="pregunta-item">
-          <p><strong>1-¿Cuál fue el aporte clave del modelo presentado por Warren McCulloch y Walter Pitts en 1943?</strong></p>
+          <p><strong>1. ¿Cuál fue el aporte clave del modelo presentado por Warren McCulloch y Walter Pitts en 1943?</strong></p>
           <p class="respuesta">Respuesta: B.
 Formalizar el primer modelo matemático de una neurona artificial.
 Respuesta correcta
-Demostró que las funciones lógicas podían representarse mediante redes simplificadas de neuronas artificiales.
-</p>
+Demostró que las funciones lógicas podían representarse mediante redes simplificadas de neuronas artificiales.</p>
         </div>
 
         <div class="pregunta-item">
-          <p><strong>2- ¿Qué evalúa el 'Juego de la Imitación' propuesto por Alan Turing en 1950?</strong></p>
+          <p><strong>2. ¿Qué evalúa el 'Juego de la Imitación' propuesto por Alan Turing en 1950?</strong></p>
           <p class="respuesta">Respuesta: A.
-Si el comportamiento conversacional de una máquina es indistinguible del de un humano.(Tu respuesta)
+Si el comportamiento conversacional de una máquina es indistinguible del de un humano. (Tu respuesta)
 Respuesta correcta
-Si un evaluador humano no puede diferenciar con certeza a la máquina del humano, la máquina pasa la prueba.
-</p>
+Si un evaluador humano no puede diferenciar con certeza a la máquina del humano, la máquina pasa la prueba.</p>
         </div>
 
         <div class="pregunta-item">
           <p><strong>3. ¿Por qué es tan relevante la Conferencia de Dartmouth celebrada en 1956?</strong></p>
-          <p class="respuesta">D. Se acuñó el término 'Inteligencia Artificial' y nació la disciplina ✓ científica.
+          <p class="respuesta">Respuesta: D.
+Se acuñó el término 'Inteligencia Artificial' y nació la disciplina científica.
 Respuesta correcta
-Data
 John McCarthy propone la frase en la propuesta de la conferencia, estableciendo la IA como campo académico formal.</p>
         </div>
-      </div>
-      <div class="pregunta-item">
+
+        <div class="pregunta-item">
           <p><strong>4. ¿Cuál era la técnica principal detrás del funcionamiento de ELIZA (1966)?</strong></p>
-          <p class="respuesta">C.
+          <p class="respuesta">Respuesta: C.
 Coincidencia de patrones de texto (pattern matching) y reglas de sustitución.
 Respuesta correcta
 Buscaba palabras clave en la entrada del usuario y reformulaba la frase para dar la apariencia de empatía.</p>
         </div>
-      </div>
-      <div class="pregunta-item">
+
+        <div class="pregunta-item">
           <p><strong>5. ¿Qué factor provocó el denominado 'Invierno de la IA' durante la década de 1980?</strong></p>
-          <p class="respuesta">A.
+          <p class="respuesta">Respuesta: A.
 Expectativas infladas sobre los Sistemas Expertos y posterior falta de resultados.
 Respuesta correcta
 El alto costo de mantenimiento y las limitaciones de los sistemas basados en reglas llevaron al desencanto de los inversores.</p>
         </div>
-     <div class="pregunta-item">
-        <p><strong>Pregunta 6: ¿Qué estrategia técnica permitió a Deep Blue vencer a Garry Kasparov en 1997?</strong></p>
-        <p class="respuesta"><strong>Respuesta correcta:</strong> Procesamiento masivo en paralelo evaluando millones de posiciones por segundo (combinó chips ASIC especializados para búsqueda en árbol heurística profunda con el conocimiento de gran maestros).</p>
-      </div>
 
-      <div class="pregunta-item">
-        <p><strong>Pregunta 7: ¿Por qué la victoria de AlexNet en ImageNet (2012) marcó un hito histórico?</strong></p>
-        <p class="respuesta"><strong>Respuesta correcta:</strong> Demostró la viabilidad del Deep Learning entrenando redes profundas con GPUs (redujo drásticamente la tasa de error en clasificación de imágenes y desató el interés masivo en el aprendizaje profundo).</p>
-      </div>
+        <div class="pregunta-item">
+          <p><strong>6. ¿Qué estrategia técnica permitió a Deep Blue vencer a Garry Kasparov en 1997?</strong></p>
+          <p class="respuesta"><strong>Respuesta correcta:</strong> Procesamiento masivo en paralelo evaluando millones de posiciones por segundo (combinó chips ASIC especializados para búsqueda en árbol heurística profunda con el conocimiento de grandes maestros).</p>
+        </div>
 
-      <div class="pregunta-item">
-        <p><strong>Pregunta 8: ¿Qué innovación introdujo el artículo 'Attention Is All You Need' en 2017?</strong></p>
-        <p class="respuesta"><strong>Respuesta correcta:</strong> La arquitectura Transformer basada en mecanismos de auto-atención (self-attention), lo que permitió procesar secuencias en paralelo facilitando el entrenamiento de modelos masivos.</p>
-      </div>
+        <div class="pregunta-item">
+          <p><strong>7. ¿Por qué la victoria de AlexNet en ImageNet (2012) marcó un hito histórico?</strong></p>
+          <p class="respuesta"><strong>Respuesta correcta:</strong> Demostró la viabilidad del Deep Learning entrenando redes profundas con GPUs (redujo drásticamente la tasa de error en clasificación de imágenes y desató el interés masivo en el aprendizaje profundo).</p>
+        </div>
 
-      <div class="pregunta-item">
-        <p><strong>Pregunta 9: ¿Qué impacto provocó el lanzamiento público de ChatGPT a finales de 2022?</strong></p>
-        <p class="respuesta"><strong>Respuesta correcta:</strong> Democratizó el acceso a la IA generativa para el público general, llevando las capacidades de los LLMs a millones de usuarios mediante una interfaz conversacional intuitiva.</p>
-      </div>
+        <div class="pregunta-item">
+          <p><strong>8. ¿Qué innovación introdujo el artículo 'Attention Is All You Need' en 2017?</strong></p>
+          <p class="respuesta"><strong>Respuesta correcta:</strong> La arquitectura Transformer basada en mecanismos de auto-atención (self-attention), lo que permitió procesar secuencias en paralelo facilitando el entrenamiento de modelos masivos.</p>
+        </div>
 
-      <div class="pregunta-item">
-        <p><strong>Pregunta 10: ¿Qué evolución metodológica se observa al comparar ELIZA (1966) con ChatGPT (2022)?</strong></p>
-        <p class="respuesta"><strong>Respuesta correcta:</strong> De reglas predefinidas y patrones manuales a aprendizaje probabilístico sobre grandes volúmenes de datos.</p>
+        <div class="pregunta-item">
+          <p><strong>9. ¿Qué impacto provocó el lanzamiento público de ChatGPT a finales de 2022?</strong></p>
+          <p class="respuesta"><strong>Respuesta correcta:</strong> Democratizó el acceso a la IA generativa para el público general, llevando las capacidades de los LLMs a millones de usuarios mediante una interfaz conversacional intuitiva.</p>
+        </div>
+
+        <div class="pregunta-item">
+          <p><strong>10. ¿Qué evolución metodológica se observa al comparar ELIZA (1966) con ChatGPT (2022)?</strong></p>
+          <p class="respuesta"><strong>Respuesta correcta:</strong> De reglas predefinidas y patrones manuales a aprendizaje probabilístico sobre grandes volúmenes de datos.</p>
+        </div>
       </div>
     </section>
 
-   <!-- 4. SECCIÓN TIPOS DE IA -->
+    <!-- 4. TIPOS DE IA -->
     <section class="seccion" id="tipos-ia">
       <h2>4. Tipos de IA</h2>
       <p class="introduccion">Clasificación y niveles de desarrollo de la Inteligencia Artificial:</p>
 
-      <!-- Subsección IA Débil -->
-      <article class="bloque-tipo-ia" id="ia-debil">
-        <h3>IA Débil (Estrecha)</h3>
-        <p>Sistemas diseñados para resolver tareas específicas y delimitadas sin conciencia general.</p>
-        <div class="contenedor-infografia-individual">
-          <img src="{{ url_for('static', filename='IADEBIL.jpeg') }}" alt="IA Débil" class="imagen-infografia-gran-tamano">
+      <article class="tarjeta-imagen" id="ia-debil">
+        <div class="tarjeta-imagen__texto">
+          <h3>IA Débil (Estrecha)</h3>
+          <p>Sistemas diseñados para resolver tareas específicas y delimitadas sin conciencia general.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
         </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: infografía de IA Débil">
+          <img src="{{ url_for('static', filename='IADEBIL.jpeg') }}" alt="IA Débil">
+        </button>
       </article>
 
-      <!-- Subsección IA Fuerte -->
-      <article class="bloque-tipo-ia" id="ia-fuerte">
-        <h3>IA Fuerte (General)</h3>
-        <p>Sistemas con capacidad cognitiva similar a la humana, capaces de razonar y aprender entre múltiples dominios.</p>
-        <div class="contenedor-infografia-individual">
-          <img src="{{ url_for('static', filename='IAFUERTE.jpeg') }}" alt="IA Fuerte" class="imagen-infografia-gran-tamano">
+      <article class="tarjeta-imagen" id="ia-fuerte">
+        <div class="tarjeta-imagen__texto">
+          <h3>IA Fuerte (General)</h3>
+          <p>Sistemas con capacidad cognitiva similar a la humana, capaces de razonar y aprender entre múltiples dominios.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
         </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: infografía de IA Fuerte">
+          <img src="{{ url_for('static', filename='IAFUERTE.jpeg') }}" alt="IA Fuerte">
+        </button>
       </article>
 
-      <!-- Subsección Superinteligencia -->
-      <article class="bloque-tipo-ia" id="ia-super">
-        <h3>Superinteligencia Artificial</h3>
-        <p>Hipótesis de una IA que supera ampliamente el intelecto humano en todos los campos científicos y creativos.</p>
-        <div class="contenedor-infografia-individual">
-          <img src="{{ url_for('static', filename='IASUPERINTELIGENTE.jpeg') }}" alt="Superinteligencia" class="imagen-infografia-gran-tamano">
+      <article class="tarjeta-imagen" id="ia-super">
+        <div class="tarjeta-imagen__texto">
+          <h3>Superinteligencia Artificial</h3>
+          <p>Hipótesis de una IA que supera ampliamente el intelecto humano en todos los campos científicos y creativos.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
         </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: infografía de Superinteligencia">
+          <img src="{{ url_for('static', filename='IASUPERINTELIGENTE.jpeg') }}" alt="Superinteligencia">
+        </button>
       </article>
     </section>
 
-    <!-- 5. SECCIÓN GLOSARIO DE 20 TÉRMINOS -->
+    <!-- 5. INFOGRAFÍA DE ALGORITMOS -->
+    <section class="seccion" id="algoritmos">
+      <h2>5. Infografía de Algoritmos</h2>
+      <p class="introduccion">Un algoritmo es una secuencia ordenada y finita de pasos para resolver un problema. Es la base de cualquier sistema de IA.</p>
+
+      <article class="tarjeta-imagen">
+        <div class="tarjeta-imagen__texto">
+          <h3>Algoritmos</h3>
+          <p>Infografía que resume qué es un algoritmo, sus características y cómo se representa.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
+        </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: infografía de algoritmos">
+          <!-- Cambia el nombre del archivo por el de tu infografía en la carpeta static -->
+          <img src="{{ url_for('static', filename='Guia_Algoritmos.png') }}" alt="Infografía de algoritmos">
+        </button>
+      </article>
+    </section>
+
+    <!-- 6. MACHINE LEARNING FOR KIDS -->
+    <section class="seccion" id="ml-kids">
+      <h2>6. Entrenamiento Machine Learning for Kids</h2>
+      <p class="introduccion">
+        Machine Learning for Kids es una herramienta educativa en la que se entrena un modelo de aprendizaje automático con ejemplos propios y luego se usa en proyectos de Scratch.
+      </p>
+
+      <article class="tarjeta-imagen">
+        <div class="tarjeta-imagen__texto">
+          <h3>Evidencia del entrenamiento</h3>
+          <p>Captura del modelo entrenado: categorías, ejemplos utilizados y resultado de las pruebas.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
+        </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: entrenamiento Machine Learning for Kids">
+          <!-- Cambia el nombre del archivo por tu captura -->
+          <img src="{{ url_for('static', filename='ML_KIDS.jpeg') }}" alt="Entrenamiento en Machine Learning for Kids">
+        </button>
+      </article>
+    </section>
+
+    <!-- 7. REPORTE DE SCRATCH -->
+    <section class="seccion" id="scratch">
+      <h2>7. Reporte de Scratch</h2>
+      <p class="introduccion">
+        Resumen del proyecto desarrollado en Scratch: objetivo, bloques utilizados y cómo se integró el modelo entrenado.
+      </p>
+
+      <article class="tarjeta-imagen">
+        <div class="tarjeta-imagen__texto">
+          <h3>Proyecto en Scratch</h3>
+          <p>Capturas y descripción del programa: escenario, objetos y lógica con bloques.</p>
+          <span class="tarjeta-imagen__pista">Haz clic para ampliar</span>
+        </div>
+        <button type="button" class="tarjeta-imagen__miniatura" aria-label="Ampliar: reporte de Scratch">
+          <!-- Cambia el nombre del archivo por tu captura -->
+          <img src="{{ url_for('static', filename='SCRATCH.jpeg') }}" alt="Reporte de Scratch">
+        </button>
+      </article>
+    </section>
+
+    <!-- 8. GLOSARIO -->
     <section class="seccion" id="glosario">
-      <h2>5. Glosario de {{ terminos|length }} Términos</h2>
-      
+      <h2>8. Glosario de {{ terminos|length }} Términos</h2>
+
       <div class="glosario-lista">
         {% for t in terminos %}
         <article class="termino" id="termino-{{ t.id }}">
@@ -171,12 +242,11 @@ El alto costo de mantenimiento y las limitaciones de los sistemas basados en reg
             <p class="termino__definicion">{{ t.definicion }}</p>
           </div>
 
-          <!-- Recuadro para agregar la imagen individual de cada término -->
           <div class="termino__imagen">
-  {% if t.imagen %}
-    <img src="{{ url_for('static', filename=t.imagen) }}" alt="Imagen de {{ t.nombre }}" class="imagen-concepto">
-  {% endif %}
-</div>
+            {% if t.imagen %}
+            <img src="{{ url_for('static', filename=t.imagen) }}" alt="Imagen de {{ t.nombre }}" class="imagen-concepto" data-ampliar>
+            {% endif %}
+          </div>
         </article>
         {% endfor %}
       </div>
@@ -187,6 +257,12 @@ El alto costo de mantenimiento y las limitaciones de los sistemas basados en reg
   <footer class="pie">
     <a href="#inicio">Volver al inicio</a>
   </footer>
+
+  <!-- VISOR AMPLIADO (lightbox con desenfoque) -->
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+    <button type="button" class="visor__cerrar" aria-label="Cerrar">&times;</button>
+    <img class="visor__imagen" src="" alt="">
+  </div>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

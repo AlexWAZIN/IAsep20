@@ -26,6 +26,8 @@ body {
   font-size: 1.125rem;
 }
 
+body.visor-abierto { overflow: hidden; }
+
 /* ---------- Encabezado ---------- */
 .encabezado {
   background: var(--azul-encabezado);
@@ -63,8 +65,8 @@ body {
 }
 
 .menu ul {
-  position: relative;
   display: flex;
+  align-items: stretch;
   gap: 0.25rem;
   margin: 0 auto;
   padding: 0 clamp(0.5rem, 3vw, 2rem);
@@ -74,6 +76,8 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
 }
+
+.menu li { flex: 0 0 auto; }
 
 .menu a {
   display: flex;
@@ -87,10 +91,12 @@ body {
   white-space: nowrap;
   text-decoration: none;
   border-bottom: 3px solid transparent;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .menu a:hover {
   border-bottom-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .menu a[aria-current="true"] {
@@ -104,30 +110,152 @@ body {
   outline-offset: -3px;
 }
 
-/* ---------- Contenido ---------- */
+/* ---------- Contenido y divisiones entre temas ---------- */
 .contenido {
   max-width: 68rem;
   margin: 0 auto;
   padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 3rem;
 }
 
+.seccion {
+  /* Evita que el menú fijo tape el título al navegar */
+  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
+  padding-block: 2.5rem;
+  border-top: 2px solid var(--linea);
+}
+
+.seccion:first-child { border-top: 0; padding-top: 1rem; }
+
+.seccion h2 {
+  position: relative;
+  margin: 0 0 1rem;
+  padding-bottom: 0.6rem;
+  color: var(--azul-encabezado);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  line-height: 1.2;
+}
+
+/* Subrayado de acento bajo cada título de tema */
+.seccion h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 4rem;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--realce);
+}
+
+.introduccion { line-height: 1.7; max-width: 66ch; }
+
+/* ---------- Diagnóstico ---------- */
+.pregunta-item {
+  padding: 1.1rem 0;
+  border-top: 1px dashed var(--linea);
+}
+
+.pregunta-item:first-of-type { border-top: 0; }
+
+.respuesta {
+  margin: 0.4rem 0 0;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  border-left: 4px solid var(--azul-menu);
+  border-radius: 0 6px 6px 0;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* ---------- Tarjetas de imagen (texto izquierda, miniatura derecha) ---------- */
+.tarjeta-imagen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 15rem);
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e0dcd3;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.tarjeta-imagen:hover {
+  box-shadow: 0 8px 20px rgba(0, 43, 91, 0.14);
+  transform: translateY(-2px);
+}
+
+.tarjeta-imagen__texto h3 {
+  margin: 0 0 0.5rem;
+  color: var(--azul-encabezado);
+  font-family: var(--fuente-titulos);
+  font-size: 1.3rem;
+}
+
+.tarjeta-imagen__texto p {
+  margin: 0 0 0.75rem;
+  color: var(--azul-menu);
+  line-height: 1.6;
+}
+
+.tarjeta-imagen__pista {
+  color: var(--tinta-suave);
+  font-family: var(--fuente-titulos);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.tarjeta-imagen__miniatura {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  background: var(--crema);
+  border: 1px solid #e0dcd3;
+  border-radius: 8px;
+  cursor: zoom-in;
+}
+
+.tarjeta-imagen__miniatura img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.tarjeta-imagen:hover .tarjeta-imagen__miniatura img { transform: scale(1.05); }
+
+.tarjeta-imagen__miniatura:focus-visible {
+  outline: 3px solid var(--realce);
+  outline-offset: 2px;
+}
+
+/* ---------- Glosario ---------- */
 .termino {
   display: grid;
-  grid-template-columns: minmax(11rem, 17rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 20rem);
+  align-items: start;
   gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
-  padding-block: 2.25rem;
+  padding-block: 2rem;
   border-top: 1px solid var(--linea);
-  scroll-margin-top: var(--menu-alto);
+  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
 }
 
 .termino:first-child { border-top: 0; }
 
-.termino__nombre h2 {
+.termino__info h3 {
   margin: 0;
   color: var(--azul-encabezado);
   font-family: var(--fuente-titulos);
   font-weight: 700;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1.2;
 }
 
@@ -140,10 +268,83 @@ body {
 }
 
 .termino__definicion {
-  margin: 0;
+  margin: 0.6rem 0 0;
   max-width: 62ch;
   line-height: 1.7;
 }
+
+.termino__imagen {
+  width: 100%;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background-color: var(--crema);
+  border: 1px solid #e0dcd3;
+}
+
+.termino__imagen:empty { display: none; }
+
+.imagen-concepto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  cursor: zoom-in;
+}
+
+/* ---------- Visor ampliado (lightbox + blur) ---------- */
+.visor {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(0, 20, 45, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.visor[hidden] { display: none; }
+.visor.visible { opacity: 1; }
+
+.visor__imagen {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  transform: scale(0.94);
+  transition: transform 0.25s;
+}
+
+.visor.visible .visor__imagen { transform: scale(1); }
+
+.visor__cerrar {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.visor__cerrar:hover { background: rgba(0, 0, 0, 0.65); }
+.visor__cerrar:focus-visible { outline: 3px solid var(--realce); }
 
 /* ---------- Pie ---------- */
 .pie {
@@ -160,87 +361,12 @@ body {
 
 /* ---------- Móvil ---------- */
 @media (max-width: 720px) {
-  .termino {
-    grid-template-columns: 1fr;
-    padding-block: 1.75rem;
+  .termino { grid-template-columns: 1fr; padding-block: 1.5rem; }
+  .termino__imagen { max-width: 100%; }
+
+  .tarjeta-imagen {
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+    gap: 1rem;
+    padding: 1rem;
   }
-}
-.imagen-linea-tiempo {
-    width: 100%;       /* O ajusta a un valor fijo como 600px */
-    max-width: 800px;  /* Evita que se vuelva gigante en pantallas grandes */
-    height: auto;      /* Mantiene la proporción para que no se deforme */
-    display: block;
-    margin: 0 auto;    /* Opcional: la centra en la pantalla */
-}
-/* ==========================================
-   SUBSECCIONES INDIVIDUALES: TIPOS DE IA
-   ========================================== */
-
-.bloque-tipo-ia {
-  background-color: #ffffff;
-  border: 1px solid #e0dcd3;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-top: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.bloque-tipo-ia h3 {
-  color: #002B5B;
-  font-size: 1.35rem;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  border-bottom: 2px solid #f9f5eb;
-  padding-bottom: 0.4rem;
-}
-
-.bloque-tipo-ia p {
-  color: #2D4059;
-  margin-bottom: 1.2rem;
-}
-
-.contenedor-infografia-individual {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: #f9f5eb;
-  padding: 1rem;
-  border-radius: 6px;
-  border: 1px solid #eee;
-  box-sizing: border-box;
-}
-
-.imagen-infografia-gran-tamano {
-  width: 100%;
-  max-width: 900px; /* Tamaño amplio para ver con claridad */
-  height: auto;
-  object-fit: contain;
-  border-radius: 4px;
-}
-/* ==========================================
-   ESTILOS DENTRO DEL GLOSARIO
-   ========================================== */
-
-/* Contenedor del recuadro de la imagen */
-.termino__imagen {
-  width: 100%;
-  max-width: 320px; /* Ancho máximo fijo para la imagen */
-  height: 220px;     /* Altura fija idéntica para todas */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  border-radius: 6px;
-  background-color: #f9f5eb;
-  border: 1px solid #e0dcd3;
-}
-
-/* Ajuste de la imagen dentro del contenedor */
-.imagen-concepto {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta y recorta la imagen proporcionalmente para llenar el contenedor */
-  object-position: center; /* Centra la imagen */
-  display: block;
 }
