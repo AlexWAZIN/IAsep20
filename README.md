@@ -58,7 +58,3 @@ proyecto/
 - **Glosario:** los términos se envían desde `app.py` como una lista llamada `terminos`. Cada término tiene `id`, `nombre`, `alias` (opcional), `definicion` e `imagen` (opcional).
 - **Nuevas tarjetas de imagen:** copia un bloque `<article class="tarjeta-imagen">` y cambia el título, el texto y la imagen. El visor ampliado funciona automáticamente.
 - **Nuevas secciones:** agrega un `<section class="seccion" id="...">` y un enlace en el menú con el mismo `id`.
-
-## Autor
-
-Proyecto académico desarrollado por _[tu nombre]_ — _[tu grupo / materia / institución]_.
