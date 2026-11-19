@@ -1,0 +1,98 @@
+{
+  "ejemplos": {
+    "Busqueda_Ciega": {
+      "lineas_archivo": 2413,
+      "encabezados": 7,
+      "ejemplos_unicos": 1200,
+      "grupos_distintos": 1200
+    },
+    "Busqueda_Heuristica": {
+      "lineas_archivo": 2411,
+      "encabezados": 6,
+      "ejemplos_unicos": 1200,
+      "grupos_distintos": 455
+    },
+    "Busqueda_Evolutiva": {
+      "lineas_archivo": 2411,
+      "encabezados": 6,
+      "ejemplos_unicos": 1200,
+      "grupos_distintos": 881
+    },
+    "Desconocida": {
+      "lineas_archivo": 250,
+      "encabezados": 0,
+      "ejemplos_unicos": 250,
+      "grupos_distintos": 81
+    }
+  },
+  "holdout": {
+    "accuracy": 0.9714285714285714,
+    "precision_macro": 0.968513310228087,
+    "recall_macro": 0.9665441176470588,
+    "f1_macro": 0.9674562356700795,
+    "n_test": 805,
+    "matriz_confusion": [
+      [
+        236,
+        2,
+        2,
+        0
+      ],
+      [
+        6,
+        233,
+        0,
+        1
+      ],
+      [
+        4,
+        0,
+        233,
+        3
+      ],
+      [
+        0,
+        0,
+        5,
+        80
+      ]
+    ],
+    "clases": [
+      "Busqueda_Ciega",
+      "Busqueda_Heuristica",
+      "Busqueda_Evolutiva",
+      "Desconocida"
+    ]
+  },
+  "cv_agrupada_5": {
+    "accuracy": 0.9807792207792208,
+    "matriz_confusion": [
+      [
+        1187,
+        4,
+        9,
+        0
+      ],
+      [
+        30,
+        1167,
+        1,
+        2
+      ],
+      [
+        16,
+        0,
+        1179,
+        5
+      ],
+      [
+        2,
+        0,
+        5,
+        243
+      ]
+    ]
+  },
+  "umbral_score": 0.03632764388463594,
+  "umbral_gap": 0.3295818517496588
+}

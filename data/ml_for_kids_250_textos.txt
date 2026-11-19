@@ -1,0 +1,250 @@
+Hola
+Adiós
+Gracias
+Perro
+Gato
+Casa
+Escuela
+Computadora
+Teclado
+Pantalla
+Ratón
+Celular
+Mesa
+Silla
+Ventana
+Puerta
+Árbol
+Flor
+Cielo
+Nube
+Lluvia
+Sol
+Luna
+Estrella
+Mar
+Río
+Montaña
+Bosque
+Libro
+Cuaderno
+Lápiz
+Pluma
+Mochila
+Zapato
+Camisa
+Pantalón
+Agua
+Leche
+Pan
+Manzana
+Naranja
+Plátano
+Café
+Té
+Pizza
+Arroz
+Frijoles
+Auto
+Bicicleta
+Camión
+Avión
+Tren
+Semáforo
+Ciudad
+Pueblo
+Parque
+Jardín
+Música
+Película
+Juego
+Amigo
+Familia
+Profesor
+Alumno
+Trabajo
+Dinero
+Tiempo
+Felicidad
+Tristeza
+Rápido
+Lento
+Grande
+Pequeño
+Verde
+Rojo
+Azul
+Amarillo
+Negro
+Blanco
+¿Puedes ayudarme con la tarea número 1?
+¿Puedes ayudarme con la tarea número 2?
+¿Puedes ayudarme con la tarea número 3?
+¿Puedes ayudarme con la tarea número 4?
+¿Puedes ayudarme con la tarea número 5?
+¿Puedes ayudarme con la tarea número 6?
+¿Puedes ayudarme con la tarea número 7?
+¿Puedes ayudarme con la tarea número 8?
+¿Puedes ayudarme con la tarea número 9?
+¿Puedes ayudarme con la tarea número 10?
+¿Puedes ayudarme con la tarea número 11?
+¿Puedes ayudarme con la tarea número 12?
+¿Puedes ayudarme con la tarea número 13?
+¿Puedes ayudarme con la tarea número 14?
+¿Puedes ayudarme con la tarea número 15?
+¿Puedes ayudarme con la tarea número 16?
+¿Puedes ayudarme con la tarea número 17?
+¿Puedes ayudarme con la tarea número 18?
+¿Puedes ayudarme con la tarea número 19?
+¿Puedes ayudarme con la tarea número 20?
+¿Puedes ayudarme con la tarea número 21?
+¿Puedes ayudarme con la tarea número 22?
+¿Puedes ayudarme con la tarea número 23?
+¿Puedes ayudarme con la tarea número 24?
+¿Puedes ayudarme con la tarea número 25?
+¿Puedes ayudarme con la tarea número 26?
+¿Puedes ayudarme con la tarea número 27?
+¿Puedes ayudarme con la tarea número 28?
+¿Puedes ayudarme con la tarea número 29?
+¿Puedes ayudarme con la tarea número 30?
+¿Puedes ayudarme con la tarea número 31?
+¿Puedes ayudarme con la tarea número 32?
+¿Puedes ayudarme con la tarea número 33?
+¿Puedes ayudarme con la tarea número 34?
+¿Puedes ayudarme con la tarea número 35?
+¿Puedes ayudarme con la tarea número 36?
+¿Puedes ayudarme con la tarea número 37?
+¿Puedes ayudarme con la tarea número 38?
+¿Puedes ayudarme con la tarea número 39?
+¿Puedes ayudarme con la tarea número 40?
+¿Puedes ayudarme con la tarea número 41?
+¿Puedes ayudarme con la tarea número 42?
+¿Puedes ayudarme con la tarea número 43?
+¿Puedes ayudarme con la tarea número 44?
+¿Puedes ayudarme con la tarea número 45?
+¿Puedes ayudarme con la tarea número 46?
+¿Puedes ayudarme con la tarea número 47?
+¿Puedes ayudarme con la tarea número 48?
+¿Puedes ayudarme con la tarea número 49?
+¿Puedes ayudarme con la tarea número 50?
+¿Puedes ayudarme con la tarea número 51?
+¿Puedes ayudarme con la tarea número 52?
+¿Puedes ayudarme con la tarea número 53?
+¿Puedes ayudarme con la tarea número 54?
+¿Puedes ayudarme con la tarea número 55?
+¿Puedes ayudarme con la tarea número 56?
+¿Puedes ayudarme con la tarea número 57?
+¿Puedes ayudarme con la tarea número 58?
+¿Puedes ayudarme con la tarea número 59?
+¿Puedes ayudarme con la tarea número 60?
+¿Puedes ayudarme con la tarea número 61?
+¿Puedes ayudarme con la tarea número 62?
+¿Puedes ayudarme con la tarea número 63?
+¿Puedes ayudarme con la tarea número 64?
+¿Puedes ayudarme con la tarea número 65?
+¿Puedes ayudarme con la tarea número 66?
+¿Puedes ayudarme con la tarea número 67?
+¿Puedes ayudarme con la tarea número 68?
+¿Puedes ayudarme con la tarea número 69?
+¿Puedes ayudarme con la tarea número 70?
+¿Puedes ayudarme con la tarea número 71?
+¿Puedes ayudarme con la tarea número 72?
+¿Puedes ayudarme con la tarea número 73?
+¿Puedes ayudarme con la tarea número 74?
+¿Puedes ayudarme con la tarea número 75?
+¿Puedes ayudarme con la tarea número 76?
+¿Puedes ayudarme con la tarea número 77?
+¿Puedes ayudarme con la tarea número 78?
+¿Puedes ayudarme con la tarea número 79?
+¿Puedes ayudarme con la tarea número 80?
+¿Puedes ayudarme con la tarea número 81?
+¿Puedes ayudarme con la tarea número 82?
+¿Puedes ayudarme con la tarea número 83?
+¿Puedes ayudarme con la tarea número 84?
+¿Puedes ayudarme con la tarea número 85?
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 1.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 2.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 3.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 4.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 5.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 6.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 7.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 8.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 9.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 10.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 11.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 12.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 13.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 14.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 15.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 16.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 17.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 18.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 19.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 20.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 21.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 22.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 23.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 24.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 25.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 26.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 27.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 28.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 29.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 30.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 31.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 32.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 33.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 34.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 35.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 36.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 37.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 38.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 39.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 40.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 41.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 42.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 43.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 44.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 45.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 46.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 47.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 48.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 49.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 50.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 51.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 52.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 53.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 54.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 55.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 56.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 57.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 58.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 59.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 60.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 61.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 62.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 63.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 64.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 65.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 66.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 67.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 68.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 69.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 70.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 71.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 72.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 73.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 74.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 75.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 76.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 77.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 78.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 79.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 80.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 81.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 82.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 83.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 84.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 85.
+El reloj come sopa mientras una bicicleta canta debajo de una nube morada 86.

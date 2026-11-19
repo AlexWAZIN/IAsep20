@@ -8,6 +8,109 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Schibsted+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- ETAPA POSTERIOR (CSS de MEDISEARCH):
+       Los estilos del módulo deberán vivir en un archivo propio y estar acotados
+       bajo el contenedor ".medisearch" para no chocar con los estilos de IASEP.
+       Descomentar cuando el archivo exista:
+  <link rel="stylesheet" href="{{ url_for('static', filename='medisearch.css') }}">
+  -->
+
+  <!-- ESTILOS TEMPORALES DE BÚSQUEDA AVANZADA
+       Heredan colores y tipografías del sitio (inherit / currentColor).
+       En una etapa posterior se moverán a static/style.css. -->
+  <style>
+    .busqueda-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .busqueda-form label {
+      font-weight: 700;
+    }
+    .busqueda-form textarea {
+      width: 100%;
+      min-height: 9rem;
+      padding: 0.85rem 1rem;
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: 1px solid rgba(128, 128, 128, 0.45);
+      border-radius: 10px;
+      resize: vertical;
+      box-sizing: border-box;
+    }
+    .busqueda-form textarea:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+    .busqueda-acciones {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .busqueda-contador {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    .busqueda-boton {
+      padding: 0.7rem 1.6rem;
+      font: inherit;
+      font-weight: 700;
+      color: #fff;
+      background: #1f1f1f;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .busqueda-boton:hover:not(:disabled) {
+      opacity: 0.88;
+    }
+    .busqueda-boton:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    .busqueda-carga {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+    .busqueda-carga[hidden] {
+      display: none;
+    }
+    .busqueda-spinner {
+      width: 1.4rem;
+      height: 1.4rem;
+      border: 3px solid rgba(128, 128, 128, 0.35);
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: busqueda-giro 0.8s linear infinite;
+    }
+    @keyframes busqueda-giro {
+      to { transform: rotate(360deg); }
+    }
+    .busqueda-resultados {
+      margin-top: 1.5rem;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(128, 128, 128, 0.35);
+      border-radius: 12px;
+    }
+    .busqueda-resultados h3 {
+      margin-top: 0;
+    }
+    .busqueda-resultados__mensaje {
+      margin: 0;
+      opacity: 0.8;
+    }
+    .busqueda-resultados__mensaje--error {
+      opacity: 1;
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
 
@@ -28,6 +131,8 @@
       <li><a href="#ml-kids">Machine Learning for Kids</a></li>
       <li><a href="#scratch">Reporte de Scratch</a></li>
       <li><a href="#glosario">Glosario</a></li>
+      <li><a href="#busqueda-avanzada">Búsqueda Avanzada</a></li>
+      <li><a href="#busqueda-lineal">Búsqueda Lineal</a></li>
     </ul>
   </nav>
 
@@ -252,6 +357,310 @@ El alto costo de mantenimiento y las limitaciones de los sistemas basados en reg
       </div>
     </section>
 
+    <!-- 9. BÚSQUEDA AVANZADA (módulo de Machine Learning for Kids)
+         ETAPA 1: solo interfaz. El modelo se conectará en etapas posteriores. -->
+    <section class="seccion" id="busqueda-avanzada">
+      <h2>9. Búsqueda Avanzada</h2>
+      <p class="introduccion">
+        Escribe una consulta y el modelo de Machine Learning entrenado en Machine Learning for Kids
+        la analizará para mostrarte el resultado correspondiente.
+      </p>
+
+      <form class="busqueda-form" id="busqueda-form" novalidate>
+        <label for="busqueda-consulta">Tu consulta</label>
+        <textarea
+          id="busqueda-consulta"
+          name="consulta"
+          rows="5"
+          maxlength="1000"
+          placeholder="Escribe aquí tu consulta..."></textarea>
+
+        <div class="busqueda-acciones">
+          <span class="busqueda-contador" id="busqueda-contador" aria-live="polite">0 / 1000</span>
+          <button type="submit" class="busqueda-boton" id="busqueda-analizar">Analizar</button>
+        </div>
+      </form>
+
+      <!-- Indicador de carga (temporal) -->
+      <div class="busqueda-carga" id="busqueda-carga" role="status" aria-live="polite" hidden>
+        <span class="busqueda-spinner" aria-hidden="true"></span>
+        <span>Analizando consulta...</span>
+      </div>
+
+      <!-- Área de resultados: aquí se mostrará la salida del modelo -->
+      <div class="busqueda-resultados" id="busqueda-resultados" aria-live="polite">
+        <h3>Resultados</h3>
+        <p class="busqueda-resultados__mensaje" id="busqueda-mensaje">Esperando integración del modelo de Machine Learning...</p>
+      </div>
+    </section>
+
+    <!-- 10. BÚSQUEDA LINEAL (módulo MEDISEARCH integrado)
+         MEDISEARCH vive completamente dentro de esta sección, encapsulado en
+         <div class="medisearch" id="medisearch">. Todos los ids de ancla del módulo
+         llevan el prefijo "ms-" para no chocar con los ids de IASEP (por ejemplo,
+         #inicio). Los ids de los elementos interactivos (criterio, termino,
+         form-busqueda, btn-iniciar, lista-viz, registro, tabla-cuerpo, s-*, p-*,
+         etc.) se conservan tal cual para que el JavaScript original siga
+         funcionando sin cambios. -->
+    <section class="seccion" id="busqueda-lineal">
+      <h2>10. Búsqueda Lineal</h2>
+
+      <div class="medisearch" id="medisearch">
+
+        <!-- ============ ENCABEZADO Y NAVEGACIÓN INTERNA DEL MÓDULO ============ -->
+        <header class="topbar" id="ms-topbar">
+          <div class="topbar__inner">
+            <!-- El título funciona como regreso al inicio del módulo (no al inicio de IASEP) -->
+            <a class="brand" href="#ms-inicio" data-ms-nav="inicio">
+              <svg class="brand__icon" viewBox="0 0 32 32" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="currentColor"/>
+                <path d="M13 7h6v6h6v6h-6v6h-6v-6H7v-6h6z" fill="#fff"/>
+              </svg>
+              <span class="brand__name">MEDISEARCH</span>
+              <span class="brand__sep" aria-hidden="true">|</span>
+              <span class="brand__tag">Sistema de búsqueda de expedientes médicos</span>
+            </a>
+            <!-- Navegación interna: solo Búsqueda, Resultados y Cómo funciona -->
+            <nav class="nav" aria-label="Secciones de MEDISEARCH">
+              <a href="#ms-busqueda" data-ms-nav="busqueda">Búsqueda</a>
+              <a href="#ms-resultados" data-ms-nav="resultados">Resultados</a>
+              <a href="#ms-como-funciona" data-ms-nav="como-funciona">Cómo funciona</a>
+            </nav>
+          </div>
+        </header>
+
+        <!-- ============ INICIO DEL MÓDULO (presentación) ============ -->
+        <div id="ms-inicio" class="hero">
+          <div class="wrap hero__grid">
+            <div class="hero__texto">
+              <h3>MediSearch</h3>
+              <p class="lead">
+                Una aplicación académica que muestra, paso a paso, cómo se buscan
+                expedientes médicos en una lista de 20 registros ficticios.
+              </p>
+              <p class="algo">
+                <strong>Algoritmo utilizado:</strong> Búsqueda Lineal (Secuencial)
+              </p>
+              <p>
+                La búsqueda lineal revisa los expedientes uno por uno, desde el
+                primero hasta el último, y compara cada uno con el término que
+                escribiste. No necesita que la lista esté ordenada y encuentra
+                todas las coincidencias, no solo la primera.
+              </p>
+              <a class="btn btn--primary" href="#ms-busqueda" data-ms-nav="busqueda">Ir a la búsqueda</a>
+            </div>
+
+            <figure class="hero__figura">
+              <svg viewBox="0 0 480 150" role="img"
+                   aria-label="Ocho carpetas en fila: las dos primeras no coinciden, la tercera coincide, la cuarta se está examinando y las demás esperan.">
+                <g class="f-no">
+                  <rect x="8"  y="22" width="22" height="10" rx="3"/><rect x="8"  y="28" width="50" height="56" rx="6"/>
+                  <rect x="66" y="22" width="22" height="10" rx="3"/><rect x="66" y="28" width="50" height="56" rx="6"/>
+                </g>
+                <g class="f-si">
+                  <rect x="124" y="22" width="22" height="10" rx="3"/><rect x="124" y="28" width="50" height="56" rx="6"/>
+                </g>
+                <g class="f-ahora">
+                  <rect x="182" y="22" width="22" height="10" rx="3"/><rect x="182" y="28" width="50" height="56" rx="6"/>
+                </g>
+                <g class="f-pend">
+                  <rect x="240" y="22" width="22" height="10" rx="3"/><rect x="240" y="28" width="50" height="56" rx="6"/>
+                  <rect x="298" y="22" width="22" height="10" rx="3"/><rect x="298" y="28" width="50" height="56" rx="6"/>
+                  <rect x="356" y="22" width="22" height="10" rx="3"/><rect x="356" y="28" width="50" height="56" rx="6"/>
+                  <rect x="414" y="22" width="22" height="10" rx="3"/><rect x="414" y="28" width="50" height="56" rx="6"/>
+                </g>
+                <polygon points="207,94 197,110 217,110" class="f-flecha"/>
+                <text x="207" y="130" text-anchor="middle" class="f-texto">examinando</text>
+              </svg>
+              <figcaption>
+                Cada carpeta es un expediente. El algoritmo las visita en orden y
+                decide, una por una, si coincide con la búsqueda.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- ============ B. BÚSQUEDA DE EXPEDIENTES ============ -->
+        <div id="ms-busqueda" class="section section--gris">
+          <div class="wrap">
+            <h4>Búsqueda de expedientes</h4>
+
+            <form id="form-busqueda" class="card form" novalidate>
+              <div class="field">
+                <label for="criterio">Criterio de búsqueda</label>
+                <select id="criterio">
+                  <option value="id">ID del expediente</option>
+                  <option value="nombre">Nombre del paciente</option>
+                  <option value="enfermedad" selected>Enfermedad</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="termino">Término de búsqueda</label>
+                <input id="termino" type="text" value="Diabetes" autocomplete="off"
+                       placeholder="Ej. Diabetes" aria-describedby="ayuda-termino mensaje-form">
+              </div>
+
+              <div class="form__acciones">
+                <button type="submit" id="btn-iniciar" class="btn btn--primary">Iniciar búsqueda</button>
+                <button type="button" id="btn-limpiar" class="btn btn--ghost">Limpiar búsqueda</button>
+              </div>
+
+              <p id="ayuda-termino" class="hint">
+                ID: coincidencia exacta. Nombre y enfermedad: coincide si el dato
+                contiene el texto escrito. Se ignoran mayúsculas y los espacios al
+                inicio y al final.
+              </p>
+              <p id="mensaje-form" class="form__msg" role="alert"></p>
+            </form>
+
+            <!-- ---- Visualización del algoritmo ---- -->
+            <div class="card viz">
+              <div class="viz__cabecera">
+                <h5>Visualización del algoritmo de búsqueda</h5>
+                <div class="controles">
+                  <button type="button" id="btn-pausar" class="btn btn--ghost btn--sm">Pausar</button>
+                  <button type="button" id="btn-continuar" class="btn btn--ghost btn--sm">Continuar</button>
+                  <button type="button" id="btn-reiniciar" class="btn btn--ghost btn--sm">Reiniciar</button>
+                  <label class="velocidad" for="velocidad">Velocidad
+                    <select id="velocidad">
+                      <option value="lenta">Lenta</option>
+                      <option value="normal" selected>Normal</option>
+                      <option value="rapida">Rápida</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              <div class="progreso">
+                <div id="barra" class="progreso__barra" role="progressbar"
+                     aria-label="Avance de la búsqueda" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                  <span id="barra-relleno" class="progreso__relleno"></span>
+                </div>
+                <span id="progreso-texto" class="progreso__texto">0 de 20 expedientes (0 %)</span>
+              </div>
+
+              <dl class="comparacion">
+                <div><dt>Estado de la búsqueda</dt><dd id="p-estado">Sin iniciar</dd></div>
+                <div><dt>Expediente examinado</dt><dd id="p-expediente">—</dd></div>
+                <div><dt>Posición en la lista</dt><dd id="p-posicion">—</dd></div>
+                <div><dt>Criterio</dt><dd id="p-criterio">—</dd></div>
+                <div><dt>Valor del expediente</dt><dd id="p-valor">—</dd></div>
+                <div><dt>Término buscado</dt><dd id="p-termino">—</dd></div>
+                <div><dt>Resultado de la comparación</dt><dd id="p-resultado">—</dd></div>
+              </dl>
+
+              <ul class="leyenda" aria-label="Significado de los colores">
+                <li><span class="muestra muestra--pendiente"></span>Sin examinar</li>
+                <li><span class="muestra muestra--examinando"></span>Examinando</li>
+                <li><span class="muestra muestra--coincide"></span>Coincide</li>
+                <li><span class="muestra muestra--descartado"></span>No coincide</li>
+              </ul>
+
+              <ol id="lista-viz" class="chips" aria-label="Expedientes en el orden en que se examinan"></ol>
+
+              <h6 class="viz__subtitulo">Registro de comparaciones</h6>
+              <ol id="registro" class="registro" aria-label="Comparaciones realizadas por el algoritmo"></ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ C. RESULTADOS ============ -->
+        <div id="ms-resultados" class="section">
+          <div class="wrap">
+            <h4>Resultados</h4>
+            <p id="estado-resumen" class="estado" role="status">
+              Sin búsqueda en curso. Elige un criterio y pulsa «Iniciar búsqueda».
+            </p>
+
+            <div class="tabla-envoltura">
+              <table class="tabla">
+                <caption class="solo-lectores">Expedientes encontrados</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">ID del expediente</th>
+                    <th scope="col">Paciente</th>
+                    <th scope="col">Edad</th>
+                    <th scope="col">Enfermedad</th>
+                    <th scope="col">Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="tabla-cuerpo"></tbody>
+              </table>
+            </div>
+
+            <h5>Resumen estadístico</h5>
+            <dl class="stats">
+              <div><dt>Total de expedientes existentes</dt><dd id="s-total">20</dd></div>
+              <div><dt>Expedientes examinados</dt><dd id="s-examinados">0</dd></div>
+              <div><dt>Total de comparaciones</dt><dd id="s-comparaciones">0</dd></div>
+              <div class="stats__ok"><dt>Coincidencias encontradas</dt><dd id="s-coincidencias">0</dd></div>
+              <div><dt>Expedientes que no coincidieron</dt><dd id="s-no-coinciden">0</dd></div>
+              <div><dt>Porcentaje de avance</dt><dd id="s-avance">0 %</dd></div>
+              <div><dt>Tiempo del algoritmo</dt><dd id="s-tiempo-alg">—</dd></div>
+              <div><dt>Duración de la animación</dt><dd id="s-tiempo-anim">—</dd></div>
+            </dl>
+            <p class="hint">
+              El tiempo del algoritmo suma solo lo que tarda el recorrido en
+              JavaScript. La duración de la animación es mayor porque se detiene a
+              propósito entre comparaciones para que puedas verlas.
+            </p>
+
+            <div class="card complejidad">
+              <h5>Complejidad del algoritmo</h5>
+              <dl>
+                <div><dt>Mejor caso: O(1)</dt>
+                     <dd>Se busca una sola coincidencia y está en la primera posición.</dd></div>
+                <div><dt>Peor caso: O(n)</dt>
+                     <dd>Hay que recorrer toda la lista de n expedientes.</dd></div>
+                <div><dt>Todas las coincidencias: O(n)</dt>
+                     <dd>Siempre se necesita revisar la lista completa, porque cualquier
+                         expediente restante podría coincidir.</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ EXPLICACIÓN ACADÉMICA ============ -->
+        <div id="ms-como-funciona" class="section section--gris">
+          <div class="wrap explicacion">
+            <h4>¿Cómo funciona la aplicación y cómo interviene el algoritmo de búsqueda?</h4>
+
+            <h5>Funcionamiento de la aplicación</h5>
+            <p>
+              MediSearch permite consultar expedientes médicos almacenados en una
+              lista de registros ficticios. El usuario selecciona un criterio de
+              búsqueda e introduce un término. La aplicación procesa la información
+              y muestra los expedientes que coinciden con la búsqueda.
+            </p>
+
+            <h5>Intervención del algoritmo de búsqueda lineal</h5>
+            <p>
+              El algoritmo de búsqueda lineal interviene recorriendo
+              secuencialmente cada expediente, comenzando desde la primera posición
+              hasta llegar al último registro. En cada paso compara el dato del
+              expediente actual con el término solicitado. Cuando encuentra una
+              coincidencia, la almacena como resultado y continúa revisando los
+              demás registros hasta finalizar el recorrido.
+            </p>
+
+            <h5>Importancia del algoritmo</h5>
+            <p>
+              Este método permite encontrar información sin necesidad de que los
+              registros estén ordenados previamente. Su complejidad temporal es
+              O(n) en el peor caso, donde n representa el número de expedientes.
+            </p>
+          </div>
+        </div>
+
+        <!-- Nota final del módulo (sustituye al pie de página independiente de MEDISEARCH) -->
+        <p class="medisearch__nota">
+          Proyecto académico de Inteligencia Artificial · Todos los expedientes son ficticios.
+        </p>
+
+      </div><!-- /#medisearch -->
+    </section>
+
   </main>
 
   <footer class="pie">
@@ -265,5 +674,74 @@ El alto costo de mantenimiento y las limitaciones de los sistemas basados en reg
   </div>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <!-- SCRIPT TEMPORAL DE BÚSQUEDA AVANZADA
+       Solo maneja el formulario y el indicador de carga.
+       En una etapa posterior se moverá a static/script.js. -->
+  <script>
+    (function () {
+      var formulario = document.getElementById('busqueda-form');
+      if (!formulario) { return; }
+
+      var campo = document.getElementById('busqueda-consulta');
+      var contador = document.getElementById('busqueda-contador');
+      var boton = document.getElementById('busqueda-analizar');
+      var carga = document.getElementById('busqueda-carga');
+      var mensaje = document.getElementById('busqueda-mensaje');
+      var urlApi = "{{ url_for('api_busqueda_avanzada') }}";
+
+      function mostrarMensaje(texto, esError) {
+        mensaje.textContent = texto;
+        mensaje.classList.toggle('busqueda-resultados__mensaje--error', !!esError);
+      }
+
+      campo.addEventListener('input', function () {
+        contador.textContent = campo.value.length + ' / ' + campo.maxLength;
+      });
+
+      formulario.addEventListener('submit', function (evento) {
+        evento.preventDefault();
+
+        var consulta = campo.value.trim();
+        if (!consulta) {
+          mostrarMensaje('Escribe una consulta antes de analizar.', true);
+          campo.focus();
+          return;
+        }
+
+        boton.disabled = true;
+        carga.hidden = false;
+
+        fetch(urlApi, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ consulta: consulta })
+        })
+          .then(function (respuesta) {
+            return respuesta.json().then(function (datos) {
+              return { ok: respuesta.ok, datos: datos };
+            });
+          })
+          .then(function (resultado) {
+            // TODO (siguientes etapas): renderizar aquí el resultado real del modelo.
+            mostrarMensaje(resultado.datos.mensaje || '', !resultado.ok);
+          })
+          .catch(function () {
+            mostrarMensaje('No se pudo conectar con el servidor. Inténtalo de nuevo.', true);
+          })
+          .then(function () {
+            boton.disabled = false;
+            carga.hidden = true;
+          });
+      });
+    })();
+  </script>
+
+  <!-- ETAPA POSTERIOR (JavaScript de MEDISEARCH):
+       El script original de MEDISEARCH debe cargarse como archivo propio, sin
+       reemplazar static/script.js de IASEP, y acotar sus consultas al contenedor
+       #medisearch. Descomentar cuando el archivo exista:
+  <script src="{{ url_for('static', filename='medisearch.js') }}" defer></script>
+  -->
 </body>
 </html>

@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, jsonify, redirect, render_template, request, url_for
+from predict import predecir
 
 app = Flask(__name__)
 
@@ -148,6 +149,93 @@ def index():
         nombre, alias = separar_termino(item["termino"])
         terminos.append({**item, "nombre": nombre, "alias": alias})
     return render_template("index.html", terminos=terminos)
+
+
+# ===========================================================================
+# BÚSQUEDA AVANZADA (módulo de Machine Learning for Kids)
+# ---------------------------------------------------------------------------
+# ETAPA 1: solo estructura. El modelo todavía NO está conectado.
+# En etapas posteriores se agregarán aquí (o en módulos importados):
+#   - la importación de predict.py / data_loader.py
+#   - la carga del modelo .joblib y de los archivos .txt
+# ===========================================================================
+
+# Límite de caracteres aceptado en la consulta (debe coincidir con el
+# atributo maxlength del textarea en templates/index.html).
+BUSQUEDA_MAX_CARACTERES = 1000
+
+# Mensaje temporal que se muestra mientras el modelo no esté integrado.
+BUSQUEDA_MENSAJE_PENDIENTE = "Esperando integración del modelo de Machine Learning..."
+
+ETIQUETAS_BONITAS = {
+    "Busqueda_Ciega": "Búsqueda Ciega",
+    "Busqueda_Heuristica": "Búsqueda Heurística",
+    "Busqueda_Evolutiva": "Búsqueda Evolutiva",
+    "Desconocida": "Desconocida / Fuera de tema",
+}
+
+
+def analizar_consulta(consulta: str) -> dict:
+    res = predecir(consulta)
+    nombre_cat = ETIQUETAS_BONITAS.get(res.categoria, res.categoria)
+    aviso = (
+        f" · Incierta ({res.motivo})"
+        if res.incierta and res.motivo
+        else (" · Incierta" if res.incierta else "")
+    )
+    detalle = (
+        f"Cobertura: {res.cobertura * 100:.0f}% · "
+        f"Margen: {res.puntuacion:.2f} · "
+        f"Separación: {res.separacion:.2f}{aviso}"
+    )
+
+    return {
+        "estado": "ok",
+        "mensaje": "",
+        "categoria": res.categoria,
+        "puntuacion": res.puntuacion,
+        "separacion": res.separacion,
+        "cobertura": res.cobertura,
+        "incierta": res.incierta,
+        "motivo": res.motivo,
+        "puntuaciones": res.puntuaciones,
+        "resultados": [
+            {
+                "titulo": nombre_cat,
+                "descripcion": detalle,
+            }
+        ],
+    }
+
+@app.route("/busqueda-avanzada")
+def busqueda_avanzada():
+    # La interfaz vive como una sección dentro de index.html (misma estructura
+    # de una sola página que el resto del sitio), por lo que esta ruta
+    # redirige al ancla correspondiente.
+    return redirect(url_for("index") + "#busqueda-avanzada")
+
+
+@app.route("/api/busqueda-avanzada", methods=["POST"])
+def api_busqueda_avanzada():
+    # Endpoint que recibirá la consulta desde el formulario de la sección.
+    datos = request.get_json(silent=True) or {}
+    consulta = (datos.get("consulta") or "").strip()
+
+    if not consulta:
+        return jsonify({
+            "estado": "error",
+            "mensaje": "Escribe una consulta antes de analizar."
+        }), 400
+
+    if len(consulta) > BUSQUEDA_MAX_CARACTERES:
+        return jsonify({
+            "estado": "error",
+            "mensaje": f"La consulta no puede superar {BUSQUEDA_MAX_CARACTERES} caracteres."
+        }), 400
+
+    # TODO (siguientes etapas): esta llamada se conectará con el modelo real.
+    resultado = analizar_consulta(consulta)
+    return jsonify(resultado)
 
 
 if __name__ == "__main__":

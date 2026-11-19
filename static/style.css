@@ -370,3 +370,668 @@ body.visor-abierto { overflow: hidden; }
     padding: 1rem;
   }
 }
+
+/* =====================================================================
+   BÚSQUEDA AVANZADA
+   Formulario, indicador de carga y tarjetas de resultados.
+   Usa la misma paleta, tipografías y tarjetas blancas del resto del sitio.
+   ===================================================================== */
+
+/* ---------- Formulario ---------- */
+.busqueda-form {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e0dcd3;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.busqueda-form label {
+  color: var(--azul-encabezado);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.busqueda-form textarea {
+  display: block;
+  width: 100%;
+  min-height: 9rem;
+  padding: 0.85rem 1rem;
+  color: var(--tinta);
+  font-family: var(--fuente-texto);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  background: var(--crema);
+  border: 1px solid var(--linea);
+  border-radius: 8px;
+  resize: vertical;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.busqueda-form textarea::placeholder {
+  color: var(--tinta-suave);
+  opacity: 0.75;
+}
+
+.busqueda-form textarea:hover { border-color: var(--azul-menu); }
+
+.busqueda-form textarea:focus-visible {
+  background: #fff;
+  border-color: var(--azul-menu);
+  outline: 3px solid var(--realce);
+  outline-offset: 1px;
+}
+
+.busqueda-form textarea[aria-invalid="true"] {
+  border-color: #B3261E;
+  background: #FDF3F2;
+}
+
+.busqueda-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.busqueda-contador {
+  color: var(--tinta-suave);
+  font-family: var(--fuente-titulos);
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.busqueda-contador--limite {
+  color: #B3261E;
+  font-weight: 700;
+}
+
+/* ---------- Botón Analizar ---------- */
+.busqueda-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0 1.9rem;
+  color: #fff;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  background: var(--azul-encabezado);
+  border: 0;
+  border-bottom: 3px solid var(--realce);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.busqueda-boton:hover:not(:disabled) {
+  background: var(--azul-menu);
+  box-shadow: 0 6px 16px rgba(0, 43, 91, 0.22);
+}
+
+.busqueda-boton:active:not(:disabled) { transform: translateY(1px); }
+
+.busqueda-boton:focus-visible {
+  outline: 3px solid var(--realce);
+  outline-offset: 2px;
+}
+
+.busqueda-boton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Indicador de carga ---------- */
+.busqueda-carga {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  color: var(--azul-menu);
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.busqueda-carga[hidden] { display: none; }
+
+.busqueda-spinner {
+  flex: 0 0 auto;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid var(--linea);
+  border-top-color: var(--realce);
+  border-radius: 50%;
+  animation: busqueda-giro 0.8s linear infinite;
+}
+
+@keyframes busqueda-giro {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .busqueda-spinner { animation-duration: 2.4s; }
+}
+
+/* ---------- Área de resultados ---------- */
+.busqueda-resultados {
+  margin-top: 1.5rem;
+  transition: opacity 0.2s;
+}
+
+.busqueda-resultados[aria-busy="true"] { opacity: 0.55; }
+
+.busqueda-resultados h3 {
+  margin: 0 0 0.75rem;
+  color: var(--azul-encabezado);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* Mensaje de estado (estado inicial, pendiente o error) */
+.busqueda-resultados__mensaje {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  color: var(--tinta-suave);
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px dashed var(--linea);
+  border-radius: 10px;
+}
+
+.busqueda-resultados__mensaje[hidden] { display: none; }
+
+.busqueda-resultados[data-estado="pendiente"] .busqueda-resultados__mensaje {
+  color: var(--azul-menu);
+  background: #fff;
+  border: 1px solid #e0dcd3;
+  border-left: 4px solid var(--realce);
+}
+
+.busqueda-resultados__mensaje--error,
+.busqueda-resultados[data-estado="error"] .busqueda-resultados__mensaje {
+  color: #8C1D18;
+  font-weight: 700;
+  background: #FDF3F2;
+  border: 1px solid #F0C9C6;
+  border-left: 4px solid #B3261E;
+}
+
+/* Tarjetas de resultado (las crea script.js cuando el backend devuelve resultados) */
+.busqueda-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.busqueda-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e0dcd3;
+  border-top: 4px solid var(--realce);
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.busqueda-tarjeta:hover {
+  box-shadow: 0 8px 20px rgba(0, 43, 91, 0.14);
+  transform: translateY(-2px);
+}
+
+.busqueda-tarjeta__titulo {
+  margin: 0;
+  color: var(--azul-encabezado);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.busqueda-tarjeta__texto {
+  margin: 0;
+  color: var(--azul-menu);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.busqueda-tarjeta__confianza {
+  margin-top: auto;
+  color: var(--tinta-suave);
+  font-family: var(--fuente-titulos);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.busqueda-tarjeta__barra {
+  display: block;
+  width: 100%;
+  height: 6px;
+  margin-top: 0.35rem;
+  overflow: hidden;
+  background: var(--linea);
+  border-radius: 3px;
+}
+
+.busqueda-tarjeta__barra > span {
+  display: block;
+  height: 100%;
+  background: var(--azul-menu);
+  border-radius: 3px;
+}
+
+/* ---------- Búsqueda Avanzada: móvil ---------- */
+@media (max-width: 720px) {
+  .busqueda-form { padding: 1rem; }
+
+  .busqueda-form textarea { min-height: 7.5rem; }
+
+  .busqueda-acciones {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .busqueda-contador { text-align: right; }
+
+  .busqueda-boton { width: 100%; }
+
+  .busqueda-lista { grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   BÚSQUEDA LINEAL  ·  MÓDULO MEDISEARCH
+   ---------------------------------------------------------------------
+   Todos los estilos de MEDISEARCH viven bajo "#busqueda-lineal .medisearch",
+   por lo que no pueden afectar a ninguna otra sección de IASEP.
+   - Las variables de MEDISEARCH llevan el prefijo --ms- y se declaran
+     dentro del contenedor (no en :root).
+   - Se conserva el aspecto original de MEDISEARCH (colores, tipografía
+     del sistema, tamaños, tarjetas, botones, SVG y responsive).
+   - Los títulos usan h3 (título del módulo), h4 (secciones), h5
+     (subsecciones) y h6 (registro) porque dentro de IASEP el h2 es el
+     título de la sección "10. Búsqueda Lineal".
+   ===================================================================== */
+
+/* ---------- Contenedor, variables y base ---------- */
+#busqueda-lineal .medisearch {
+  --ms-azul-900: #0b2f5c;
+  --ms-azul-700: #124e9c;
+  --ms-azul-600: #1769c5;
+  --ms-azul-100: #dceafa;
+  --ms-azul-50:  #f0f6fd;
+
+  --ms-gris-900: #1f2933;
+  --ms-gris-700: #4a5563;
+  --ms-gris-600: #5f6b7a;
+  --ms-gris-300: #d3d9e1;
+  --ms-gris-200: #e4e8ee;
+  --ms-gris-100: #f3f5f8;
+
+  --ms-verde-700: #14783f;
+  --ms-verde-500: #22a35d;
+  --ms-verde-100: #ddf3e6;
+
+  --ms-rojo-700: #b83232;
+  --ms-rojo-400: #e07272;
+  --ms-rojo-100: #fce8e8;
+
+  --ms-radio: 10px;
+  --ms-fuente: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* Restablece la tipografía base de MEDISEARCH (IASEP usa otra) */
+  margin-top: 1.5rem;
+  overflow: hidden;            /* respaldo para navegadores sin "clip" */
+  overflow: clip;              /* recorta esquinas sin romper el sticky interno */
+  font-family: var(--ms-fuente);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ms-gris-900);
+  background: #fff;
+  line-height: 1.55;
+  border: 1px solid var(--ms-gris-200);
+  border-radius: var(--ms-radio);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#busqueda-lineal .medisearch h3,
+#busqueda-lineal .medisearch h4,
+#busqueda-lineal .medisearch h5,
+#busqueda-lineal .medisearch h6 {
+  margin: 0 0 .75rem;
+  padding: 0;
+  color: var(--ms-azul-900);
+  font-family: inherit;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* h3 = antiguo h1 de MEDISEARCH */
+#busqueda-lineal .medisearch h3 { font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -.01em; }
+/* h4 = antiguo h2 */
+#busqueda-lineal .medisearch h4 { font-size: clamp(1.5rem, 3vw, 1.9rem); margin-bottom: 1.25rem; }
+/* h5 = antiguo h3 */
+#busqueda-lineal .medisearch h5 { font-size: 1.15rem; }
+/* h6 = antiguo h4 */
+#busqueda-lineal .medisearch h6 { font-size: 1rem; }
+
+#busqueda-lineal .medisearch p { margin: 0 0 1rem; }
+
+#busqueda-lineal .medisearch .wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
+
+#busqueda-lineal .medisearch .solo-lectores {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+#busqueda-lineal .medisearch :focus-visible { outline: 3px solid var(--ms-azul-600); outline-offset: 2px; }
+
+/* Anclas internas: compensan el menú de IASEP (sticky) y la barra del módulo */
+#busqueda-lineal .medisearch #ms-inicio,
+#busqueda-lineal .medisearch #ms-busqueda,
+#busqueda-lineal .medisearch #ms-resultados,
+#busqueda-lineal .medisearch #ms-como-funciona {
+  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
+}
+
+/* ---------- Encabezado del módulo ---------- */
+#busqueda-lineal .medisearch .topbar { background: #fff; border-bottom: 1px solid var(--ms-gris-200); }
+
+#busqueda-lineal .medisearch .topbar__inner {
+  width: min(1120px, 100% - 2rem);
+  margin-inline: auto;
+  padding: .75rem 0;
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: .5rem 1.5rem;
+}
+
+#busqueda-lineal .medisearch .brand {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .6rem;
+  color: var(--ms-azul-900); text-decoration: none;
+}
+#busqueda-lineal .medisearch .brand__icon { width: 34px; height: 34px; color: var(--ms-azul-600); flex: none; }
+#busqueda-lineal .medisearch .brand__name { font-weight: 800; font-size: 1.25rem; letter-spacing: .04em; }
+#busqueda-lineal .medisearch .brand__sep  { color: var(--ms-gris-300); }
+#busqueda-lineal .medisearch .brand__tag  { color: var(--ms-gris-700); font-size: .95rem; }
+
+#busqueda-lineal .medisearch .nav { display: flex; flex-wrap: wrap; gap: .25rem; }
+#busqueda-lineal .medisearch .nav a {
+  padding: .4rem .85rem; border-radius: 999px;
+  color: var(--ms-gris-700); text-decoration: none; font-weight: 500;
+}
+#busqueda-lineal .medisearch .nav a:hover { background: var(--ms-azul-50); color: var(--ms-azul-700); }
+
+/* La barra del módulo se queda fija justo debajo del menú de IASEP */
+@media (min-width: 900px) {
+  #busqueda-lineal .medisearch .topbar { position: sticky; top: var(--menu-alto); z-index: 9; }
+
+  #busqueda-lineal .medisearch #ms-inicio,
+  #busqueda-lineal .medisearch #ms-busqueda,
+  #busqueda-lineal .medisearch #ms-resultados,
+  #busqueda-lineal .medisearch #ms-como-funciona {
+    scroll-margin-top: calc(var(--menu-alto) + 5rem);
+  }
+}
+
+/* ---------- Botones y formularios ---------- */
+#busqueda-lineal .medisearch .btn {
+  display: inline-block;
+  font: inherit; font-weight: 600; text-decoration: none; text-align: center;
+  padding: .6rem 1.1rem; border-radius: 8px;
+  border: 1.5px solid transparent; cursor: pointer;
+  transition: background-color .15s, border-color .15s, color .15s;
+}
+#busqueda-lineal .medisearch .btn--primary { background: var(--ms-azul-600); color: #fff; }
+#busqueda-lineal .medisearch .btn--primary:hover:not(:disabled) { background: var(--ms-azul-700); }
+#busqueda-lineal .medisearch .btn--ghost { background: #fff; color: var(--ms-gris-900); border-color: var(--ms-gris-300); }
+#busqueda-lineal .medisearch .btn--ghost:hover:not(:disabled) { border-color: var(--ms-azul-600); color: var(--ms-azul-700); }
+#busqueda-lineal .medisearch .btn--sm { padding: .4rem .85rem; font-size: .95rem; }
+#busqueda-lineal .medisearch .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+#busqueda-lineal .medisearch label {
+  display: block; font-family: inherit; font-weight: 600; font-size: .95rem;
+  margin-bottom: .35rem; color: inherit;
+}
+
+#busqueda-lineal .medisearch select,
+#busqueda-lineal .medisearch input[type="text"] {
+  width: 100%; font: inherit; color: inherit;
+  padding: .6rem .75rem; background: #fff;
+  border: 1.5px solid var(--ms-gris-300); border-radius: 8px;
+}
+#busqueda-lineal .medisearch select:disabled,
+#busqueda-lineal .medisearch input:disabled { background: var(--ms-gris-100); color: var(--ms-gris-600); }
+
+#busqueda-lineal .medisearch .hint { font-size: .9rem; color: var(--ms-gris-600); margin: .75rem 0 0; }
+
+/* ---------- Tarjetas y secciones ---------- */
+#busqueda-lineal .medisearch .card {
+  background: #fff;
+  border: 1px solid var(--ms-gris-200);
+  border-radius: var(--ms-radio);
+  padding: 1.25rem;
+  /* Neutraliza el hover/transición de otras "tarjetas" de IASEP si se reutilizara la clase */
+  box-shadow: none;
+  transform: none;
+}
+
+#busqueda-lineal .medisearch .section { padding: 3.5rem 0; }
+#busqueda-lineal .medisearch .section--gris { background: var(--ms-gris-100); }
+
+/* ---------- Presentación del módulo ---------- */
+#busqueda-lineal .medisearch .hero {
+  background: var(--ms-azul-50); padding: 3.5rem 0; border-bottom: 1px solid var(--ms-azul-100);
+}
+
+#busqueda-lineal .medisearch .hero__grid {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 2.5rem; align-items: center;
+}
+#busqueda-lineal .medisearch .hero__texto { max-width: 60ch; }
+#busqueda-lineal .medisearch .lead { font-size: 1.2rem; color: var(--ms-gris-700); }
+#busqueda-lineal .medisearch .algo {
+  display: inline-block; padding: .45rem .9rem; margin-bottom: 1rem;
+  background: #fff; border: 1.5px solid var(--ms-azul-600);
+  border-radius: 8px; color: var(--ms-azul-900);
+}
+#busqueda-lineal .medisearch .hero__figura { margin: 0; }
+#busqueda-lineal .medisearch .hero__figura svg { width: 100%; height: auto; display: block; }
+#busqueda-lineal .medisearch .hero__figura figcaption {
+  font-size: .9rem; color: var(--ms-gris-600); margin-top: .5rem; max-width: 52ch;
+}
+
+#busqueda-lineal .medisearch .f-no rect    { fill: var(--ms-rojo-100);  stroke: var(--ms-rojo-400);  stroke-width: 2; }
+#busqueda-lineal .medisearch .f-si rect    { fill: var(--ms-verde-100); stroke: var(--ms-verde-500); stroke-width: 2; }
+#busqueda-lineal .medisearch .f-ahora rect { fill: var(--ms-azul-600);  stroke: var(--ms-azul-700);  stroke-width: 2; }
+#busqueda-lineal .medisearch .f-pend rect  { fill: #fff;                stroke: var(--ms-gris-300);  stroke-width: 2; }
+#busqueda-lineal .medisearch .f-flecha { fill: var(--ms-azul-600); }
+#busqueda-lineal .medisearch .f-texto  { fill: var(--ms-azul-700); font: 600 14px var(--ms-fuente); }
+
+@media (max-width: 800px) {
+  #busqueda-lineal .medisearch .hero__grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- Formulario de búsqueda de expedientes ---------- */
+#busqueda-lineal .medisearch .form {
+  display: grid; grid-template-columns: minmax(200px, 260px) 1fr auto;
+  gap: 1rem; align-items: end; margin-bottom: 1.5rem;
+}
+#busqueda-lineal .medisearch .form__acciones { display: flex; flex-wrap: wrap; gap: .5rem; }
+#busqueda-lineal .medisearch .form .hint,
+#busqueda-lineal .medisearch .form__msg { grid-column: 1 / -1; margin: 0; }
+#busqueda-lineal .medisearch .form__msg { color: var(--ms-rojo-700); font-weight: 600; min-height: 0; }
+#busqueda-lineal .medisearch .form__msg:empty { display: none; }
+
+@media (max-width: 800px) {
+  #busqueda-lineal .medisearch .form { grid-template-columns: 1fr; }
+}
+
+/* ---------- Visualización ---------- */
+#busqueda-lineal .medisearch .viz__cabecera {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: .75rem 1.5rem; margin-bottom: 1rem;
+}
+#busqueda-lineal .medisearch .viz__cabecera h5 { margin: 0; }
+
+#busqueda-lineal .medisearch .controles { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+#busqueda-lineal .medisearch .velocidad {
+  display: flex; align-items: center; gap: .5rem;
+  margin: 0 0 0 .5rem; font-weight: 600; white-space: nowrap;
+}
+#busqueda-lineal .medisearch .velocidad select { width: auto; padding: .35rem .6rem; }
+
+/* Barra de progreso */
+#busqueda-lineal .medisearch .progreso { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+#busqueda-lineal .medisearch .progreso__barra {
+  flex: 1; height: 12px; background: var(--ms-gris-200);
+  border-radius: 999px; overflow: hidden;
+}
+#busqueda-lineal .medisearch .progreso__relleno {
+  display: block; height: 100%; width: 0;
+  background: var(--ms-azul-600); transition: width .2s;
+}
+#busqueda-lineal .medisearch .progreso__texto { font-size: .9rem; color: var(--ms-gris-700); white-space: nowrap; }
+
+/* Panel de comparación actual */
+#busqueda-lineal .medisearch .comparacion {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: .75rem; margin: 0 0 1rem; padding: 1rem;
+  background: var(--ms-azul-50); border: 1px solid var(--ms-azul-100); border-radius: 8px;
+}
+#busqueda-lineal .medisearch .comparacion dt { font-size: .8rem; color: var(--ms-gris-600); }
+#busqueda-lineal .medisearch .comparacion dd { margin: 0; font-weight: 700; font-size: 1.05rem; overflow-wrap: anywhere; }
+#busqueda-lineal .medisearch #p-resultado.res--examinando { color: var(--ms-azul-700); }
+#busqueda-lineal .medisearch #p-resultado.res--coincide   { color: var(--ms-verde-700); }
+#busqueda-lineal .medisearch #p-resultado.res--descartado { color: var(--ms-rojo-700); }
+
+/* Leyenda de colores */
+#busqueda-lineal .medisearch .leyenda {
+  display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
+  list-style: none; margin: 0 0 1rem; padding: 0; font-size: .9rem; color: var(--ms-gris-700);
+}
+#busqueda-lineal .medisearch .leyenda li { display: flex; align-items: center; gap: .4rem; }
+#busqueda-lineal .medisearch .muestra { width: 16px; height: 16px; border-radius: 4px; border: 2px solid; }
+#busqueda-lineal .medisearch .muestra--pendiente  { background: var(--ms-gris-100); border-color: var(--ms-gris-300); }
+#busqueda-lineal .medisearch .muestra--examinando { background: var(--ms-azul-600); border-color: var(--ms-azul-700); }
+#busqueda-lineal .medisearch .muestra--coincide   { background: var(--ms-verde-100); border-color: var(--ms-verde-500); }
+#busqueda-lineal .medisearch .muestra--descartado { background: var(--ms-rojo-100); border-color: var(--ms-rojo-400); }
+
+/* Expedientes (cuadrícula del recorrido) */
+#busqueda-lineal .medisearch .chips {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: .6rem; list-style: none; margin: 0 0 1.25rem; padding: 0;
+}
+#busqueda-lineal .medisearch .chip {
+  position: relative; display: grid; gap: .1rem;
+  padding: .6rem .75rem; border: 2px solid; border-radius: 8px;
+  font-size: .9rem; transition: background-color .15s, border-color .15s, color .15s;
+}
+#busqueda-lineal .medisearch .chip__pos { position: absolute; top: .4rem; right: .6rem; font-size: .75rem; opacity: .75; }
+#busqueda-lineal .medisearch .chip__id  { font-weight: 700; }
+#busqueda-lineal .medisearch .chip__estado { margin-top: .25rem; font-size: .8rem; font-weight: 700; }
+
+/* El dato que se está comparando se resalta según el criterio elegido */
+#busqueda-lineal .medisearch .chips[data-criterio="id"]         .chip__id,
+#busqueda-lineal .medisearch .chips[data-criterio="nombre"]     .chip__nombre,
+#busqueda-lineal .medisearch .chips[data-criterio="enfermedad"] .chip__enfermedad {
+  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px;
+}
+
+#busqueda-lineal .medisearch .chip--pendiente  { background: var(--ms-gris-100); border-color: var(--ms-gris-300); color: var(--ms-gris-600); }
+#busqueda-lineal .medisearch .chip--examinando { background: var(--ms-azul-600); border-color: var(--ms-azul-700); color: #fff; }
+#busqueda-lineal .medisearch .chip--coincide   { background: var(--ms-verde-100); border-color: var(--ms-verde-500); color: var(--ms-verde-700); }
+#busqueda-lineal .medisearch .chip--descartado { background: var(--ms-rojo-100); border-color: var(--ms-rojo-400); color: var(--ms-rojo-700); }
+
+/* Registro de comparaciones */
+#busqueda-lineal .medisearch .viz__subtitulo { margin-bottom: .5rem; }
+#busqueda-lineal .medisearch .registro {
+  max-height: 11rem; overflow-y: auto; margin: 0; padding: .5rem .75rem .5rem 2.25rem;
+  background: var(--ms-gris-100); border-radius: 8px; font-size: .9rem;
+}
+#busqueda-lineal .medisearch .registro li {
+  padding: .15rem 0 .15rem .5rem; border-left: 3px solid var(--ms-gris-300); margin-bottom: .2rem;
+}
+#busqueda-lineal .medisearch .registro li.reg--coincide   { border-left-color: var(--ms-verde-500); }
+#busqueda-lineal .medisearch .registro li.reg--descartado { border-left-color: var(--ms-rojo-400); }
+#busqueda-lineal .medisearch .registro:empty::before {
+  content: "Aún no se ha realizado ninguna comparación."; color: var(--ms-gris-600); margin-left: -1.5rem;
+}
+
+/* ---------- Resultados ---------- */
+#busqueda-lineal .medisearch .estado {
+  display: inline-block; padding: .5rem .9rem; margin-bottom: 1rem;
+  background: var(--ms-azul-50); border: 1px solid var(--ms-azul-100);
+  border-radius: 8px; color: var(--ms-azul-900); font-weight: 600;
+}
+
+#busqueda-lineal .medisearch .tabla-envoltura {
+  overflow-x: auto; margin-bottom: 2rem;
+  border: 1px solid var(--ms-gris-200); border-radius: var(--ms-radio);
+}
+#busqueda-lineal .medisearch .tabla { width: 100%; border-collapse: collapse; min-width: 560px; }
+#busqueda-lineal .medisearch .tabla th,
+#busqueda-lineal .medisearch .tabla td {
+  padding: .7rem 1rem; text-align: left; border-bottom: 1px solid var(--ms-gris-200);
+}
+#busqueda-lineal .medisearch .tabla th { background: var(--ms-azul-50); color: var(--ms-azul-900); font-size: .9rem; }
+#busqueda-lineal .medisearch .tabla tbody tr:last-child td { border-bottom: 0; }
+#busqueda-lineal .medisearch .tabla .fila-vacia td { color: var(--ms-gris-600); text-align: center; padding: 1.5rem 1rem; }
+#busqueda-lineal .medisearch .etiqueta-ok {
+  display: inline-block; padding: .15rem .6rem; border-radius: 999px;
+  background: var(--ms-verde-100); color: var(--ms-verde-700); font-weight: 700; font-size: .85rem;
+}
+
+#busqueda-lineal .medisearch .stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .75rem; margin: 0 0 .5rem;
+}
+#busqueda-lineal .medisearch .stats > div {
+  padding: .9rem 1rem; border: 1px solid var(--ms-gris-200); border-radius: 8px; background: var(--ms-gris-100);
+}
+#busqueda-lineal .medisearch .stats dt { font-size: .85rem; color: var(--ms-gris-700); }
+#busqueda-lineal .medisearch .stats dd { margin: .2rem 0 0; font-size: 1.6rem; font-weight: 700; color: var(--ms-azul-900); }
+#busqueda-lineal .medisearch .stats__ok { background: var(--ms-verde-100) !important; border-color: var(--ms-verde-500) !important; }
+#busqueda-lineal .medisearch .stats__ok dd { color: var(--ms-verde-700); }
+
+#busqueda-lineal .medisearch .complejidad { margin-top: 2rem; }
+#busqueda-lineal .medisearch .complejidad dl {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 0;
+}
+#busqueda-lineal .medisearch .complejidad dt { font-weight: 700; color: var(--ms-azul-700); }
+#busqueda-lineal .medisearch .complejidad dd { margin: .2rem 0 0; color: var(--ms-gris-700); }
+
+/* ---------- Explicación ---------- */
+#busqueda-lineal .medisearch .explicacion { max-width: 760px; }
+#busqueda-lineal .medisearch .explicacion h5 { margin-top: 1.5rem; }
+
+/* ---------- Nota final del módulo (antes: pie de página de MEDISEARCH) ---------- */
+#busqueda-lineal .medisearch .medisearch__nota {
+  margin: 0;
+  padding: 1.5rem max(1rem, calc((100% - 1120px) / 2));
+  background: var(--ms-azul-900);
+  color: #cfdcf0;
+  font-size: .9rem;
+}
+
+/* ---------- Preferencias de movimiento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #busqueda-lineal .medisearch .chip,
+  #busqueda-lineal .medisearch .progreso__relleno,
+  #busqueda-lineal .medisearch .btn { transition: none; }
+}
