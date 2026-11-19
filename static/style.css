@@ -1,18 +1,90 @@
-:root {
-  --azul-encabezado: #002B5B;
-  --azul-menu: #2D4059;
-  --crema: #F9F5EB;
-  --tinta: #1F2B3D;
-  --tinta-suave: #4A5A70;
-  --linea: rgba(45, 64, 89, 0.22);
-  --realce: #E8B04B;
-  --menu-alto: 3.5rem;
+/* =====================================================================
+   IASEP - PLATAFORMA EDUCATIVA DE INTELIGENCIA ARTIFICIAL & ALGORITMOS
+   SISTEMA DE DISEÑO: AI Research Lab / Tech Education Platform (Fase 1)
+   ===================================================================== */
 
-  --fuente-titulos: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --fuente-texto: "Newsreader", Georgia, "Times New Roman", serif;
+/* ---------------------------------------------------------------------
+   0. TIPOGRAFÍAS TECNOLÓGICAS (Google Fonts)
+   - Títulos y Branding: Plus Jakarta Sans
+   - Lectura e Interfaz: Inter
+   - Métricas, Algoritmos y Datos: JetBrains Mono
+   --------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+  /* Paleta Tech Clean / AI Platform */
+  --color-primary: #2563EB;        /* Azul Tecnológico */
+  --color-primary-hover: #1D4ED8;  /* Azul Intenso */
+  --color-primary-light: #EFF6FF;  /* Tinte azul suave */
+  --color-primary-border: #BFDBFE;
+
+  --color-indigo: #4F46E5;         /* Deep Tech Indigo */
+  --color-cyan: #06B6D4;           /* Cyan Algoritmos & Datos */
+  --color-cyan-light: #ECFEFF;
+
+  --color-success: #10B981;        /* Esmeralda - Coincidencias / Aciertos */
+  --color-success-light: #ECFDF5;
+  --color-success-border: #A7F3D0;
+  --color-success-text: #065F46;
+
+  --color-warning: #F59E0B;        /* Ámbar - Alertas / Estados intermedios */
+  --color-warning-light: #FFFBEB;
+  --color-warning-border: #FDE68A;
+  --color-warning-text: #92400E;
+
+  --color-danger: #EF4444;         /* Rojo Coral - Descarte / Errores */
+  --color-danger-light: #FEF2F2;
+  --color-danger-border: #FECACA;
+  --color-danger-text: #991B1B;
+
+  /* Superficies y Neutros (Tech Clean) */
+  --bg-app: #F8FAFC;               /* Canvas Slate 50 */
+  --bg-card: #FFFFFF;              /* Superficies nítidas */
+  --bg-card-subtle: #F1F5F9;       /* Slate 100 para fondos secundarios */
+  --bg-glass: rgba(15, 23, 42, 0.94);
+
+  --text-main: #0F172A;            /* Slate 900 - Alta legibilidad */
+  --text-secondary: #475569;       /* Slate 600 - Explicaciones y cuerpo */
+  --text-muted: #64748B;           /* Slate 500 - Pistas y metadata */
+  --text-light: #94A3B8;           /* Slate 400 - Detalles secundarios */
+  --text-inverse: #FFFFFF;
+
+  --border-subtle: #E2E8F0;        /* Slate 200 - Bordes suaves */
+  --border-medium: #CBD5E1;        /* Slate 300 - Bordes activos */
+  --border-focus: #3B82F6;
+
+  /* Sombras Técnicas Multicapa */
+  --sombra-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --sombra-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --sombra-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --sombra-glow: 0 0 24px -4px rgba(37, 99, 235, 0.16);
+
+  /* Radios de borde modernos */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-pill: 9999px;
+
+  /* Tipografías */
+  --fuente-titulos: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fuente-texto: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fuente-mono: "JetBrains Mono", "Fira Code", "SF Mono", Consolas, monospace;
+
+  /* Compatibilidad con nombres heredados */
+  --azul-encabezado: var(--text-main);
+  --azul-menu: #0F172A;
+  --crema: var(--bg-app);
+  --tinta: var(--text-main);
+  --tinta-suave: var(--text-secondary);
+  --linea: var(--border-subtle);
+  --realce: var(--color-cyan);
+  --menu-alto: 3.75rem;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
@@ -20,194 +92,301 @@
 
 body {
   margin: 0;
-  background: var(--crema);
-  color: var(--tinta);
+  background-color: var(--bg-app);
+  color: var(--text-main);
   font-family: var(--fuente-texto);
-  font-size: 1.125rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-body.visor-abierto { overflow: hidden; }
+body.visor-abierto {
+  overflow: hidden;
+}
 
-/* ---------- Encabezado ---------- */
+/* =====================================================================
+   1. ENCABEZADO (Hero Tech Lab)
+   ===================================================================== */
 .encabezado {
-  background: var(--azul-encabezado);
-  color: var(--crema);
-  padding: clamp(2.5rem, 8vw, 5.5rem) clamp(1.25rem, 5vw, 3rem) clamp(2rem, 6vw, 4rem);
+  position: relative;
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 55%, #0F172A 100%);
+  color: #FFFFFF;
+  padding: clamp(3.5rem, 8vw, 6rem) clamp(1.5rem, 5vw, 3rem) clamp(3rem, 6vw, 5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+/* Gradiente sutil de fondo tipo laboratorio */
+.encabezado::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.22) 0%, transparent 55%),
+    radial-gradient(circle at 10% 90%, rgba(6, 182, 212, 0.16) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .encabezado h1,
 .encabezado p {
-  max-width: 68rem;
+  position: relative;
+  max-width: 72rem;
   margin-inline: auto;
 }
 
 .encabezado h1 {
-  margin-block: 0 0.75rem;
+  margin-block: 0 0.85rem;
   font-family: var(--fuente-titulos);
-  font-weight: 900;
-  font-size: clamp(2.5rem, 9vw, 5.75rem);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  font-size: clamp(2.4rem, 7vw, 4.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  background: linear-gradient(135deg, #FFFFFF 40%, #93C5FD 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .encabezado p {
   margin-block: 0;
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
-  opacity: 0.85;
+  font-family: var(--fuente-texto);
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+  color: #94A3B8;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
-/* ---------- Menú ---------- */
+/* =====================================================================
+   2. MENÚ DE NAVEGACIÓN (Glassmorphism Tech Bar)
+   ===================================================================== */
 .menu {
   position: sticky;
   top: 0;
-  z-index: 10;
-  background: var(--azul-menu);
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
 }
 
 .menu ul {
   display: flex;
-  align-items: stretch;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 0.35rem;
   margin: 0 auto;
-  padding: 0 clamp(0.5rem, 3vw, 2rem);
+  padding: 0 clamp(0.75rem, 3vw, 2rem);
   max-width: 76rem;
   list-style: none;
   overflow-x: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
-.menu li { flex: 0 0 auto; }
+.menu li {
+  flex: 0 0 auto;
+}
 
 .menu a {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   height: var(--menu-alto);
-  padding: 0 0.9rem;
-  color: #FFFFFF;
+  padding: 0 0.95rem;
+  color: #94A3B8;
   font-family: var(--fuente-titulos);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   white-space: nowrap;
   text-decoration: none;
-  border-bottom: 3px solid transparent;
-  transition: border-color 0.2s, background 0.2s;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  position: relative;
 }
 
 .menu a:hover {
-  border-bottom-color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .menu a[aria-current="true"] {
-  font-weight: 700;
-  border-bottom-color: var(--realce);
+  color: #FFFFFF;
+  font-weight: 600;
+  background: rgba(37, 99, 235, 0.18);
+}
+
+/* Indicador de sección activa tipo barra luminosa */
+.menu a[aria-current="true"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0.85rem;
+  right: 0.85rem;
+  height: 2.5px;
+  background: var(--color-cyan);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 0 10px var(--color-cyan);
 }
 
 .menu a:focus-visible,
 .pie a:focus-visible {
-  outline: 3px solid var(--realce);
-  outline-offset: -3px;
+  outline: 2px solid var(--color-cyan);
+  outline-offset: -2px;
 }
 
-/* ---------- Contenido y divisiones entre temas ---------- */
+/* =====================================================================
+   3. CONTENIDO PRINCIPAL Y SECCIONES
+   ===================================================================== */
 .contenido {
-  max-width: 68rem;
+  max-width: 72rem;
   margin: 0 auto;
-  padding: 1.5rem clamp(1.25rem, 5vw, 3rem) 3rem;
+  padding: 2rem clamp(1.25rem, 5vw, 3rem) 4rem;
 }
 
 .seccion {
-  /* Evita que el menú fijo tape el título al navegar */
-  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
-  padding-block: 2.5rem;
-  border-top: 2px solid var(--linea);
+  scroll-margin-top: calc(var(--menu-alto) + 1rem);
+  padding-block: 3.5rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
-.seccion:first-child { border-top: 0; padding-top: 1rem; }
+.seccion:first-child {
+  border-top: 0;
+  padding-top: 1.5rem;
+}
 
 .seccion h2 {
   position: relative;
   margin: 0 0 1rem;
-  padding-bottom: 0.6rem;
-  color: var(--azul-encabezado);
+  padding-bottom: 0.75rem;
+  color: var(--text-main);
   font-family: var(--fuente-titulos);
   font-weight: 700;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.1rem);
   line-height: 1.2;
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: center;
 }
 
-/* Subrayado de acento bajo cada título de tema */
+/* Acento tecnológico bajo el título */
 .seccion h2::after {
   content: "";
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 4rem;
-  height: 4px;
-  border-radius: 2px;
-  background: var(--realce);
+  width: 3.5rem;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-cyan));
 }
 
-.introduccion { line-height: 1.7; max-width: 66ch; }
+.introduccion {
+  color: var(--text-secondary);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 68ch;
+  margin-top: 0.5rem;
+}
 
-/* ---------- Diagnóstico ---------- */
+/* =====================================================================
+   4. DIAGNÓSTICO (Benchmark & Test de Evaluación)
+   ===================================================================== */
+.bloque-preguntas {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
 .pregunta-item {
-  padding: 1.1rem 0;
-  border-top: 1px dashed var(--linea);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--sombra-sm);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.pregunta-item:first-of-type { border-top: 0; }
+.pregunta-item:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--sombra-md);
+}
+
+.pregunta-item > p:first-child {
+  margin: 0 0 0.85rem;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  line-height: 1.5;
+}
 
 .respuesta {
-  margin: 0.4rem 0 0;
-  padding: 0.75rem 1rem;
-  background: #fff;
-  border-left: 4px solid var(--azul-menu);
-  border-radius: 0 6px 6px 0;
+  margin: 0.6rem 0 0;
+  padding: 1rem 1.25rem;
+  background: var(--color-success-light);
+  border: 1px solid var(--color-success-border);
+  border-left: 4px solid var(--color-success);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--color-success-text);
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
   line-height: 1.6;
   white-space: pre-line;
 }
 
-/* ---------- Tarjetas de imagen (texto izquierda, miniatura derecha) ---------- */
+/* =====================================================================
+   5. TARJETAS DE IMAGEN (Showcases & Diagramas)
+   ===================================================================== */
 .tarjeta-imagen {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(10rem, 15rem);
+  grid-template-columns: minmax(0, 1fr) minmax(11rem, 16rem);
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 1.5rem;
-  padding: 1.25rem;
-  background: #fff;
-  border: 1px solid #e0dcd3;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
-  transition: box-shadow 0.2s, transform 0.2s;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--sombra-sm);
+  scroll-margin-top: calc(var(--menu-alto) + 1rem);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .tarjeta-imagen:hover {
-  box-shadow: 0 8px 20px rgba(0, 43, 91, 0.14);
+  border-color: var(--color-primary-border);
+  box-shadow: var(--sombra-md), var(--sombra-glow);
   transform: translateY(-2px);
 }
 
 .tarjeta-imagen__texto h3 {
-  margin: 0 0 0.5rem;
-  color: var(--azul-encabezado);
+  margin: 0 0 0.6rem;
+  color: var(--text-main);
   font-family: var(--fuente-titulos);
+  font-weight: 700;
   font-size: 1.3rem;
+  letter-spacing: -0.015em;
 }
 
 .tarjeta-imagen__texto p {
-  margin: 0 0 0.75rem;
-  color: var(--azul-menu);
+  margin: 0 0 1rem;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
   line-height: 1.6;
 }
 
 .tarjeta-imagen__pista {
-  color: var(--tinta-suave);
-  font-family: var(--fuente-titulos);
-  font-size: 0.85rem;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-family: var(--fuente-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-primary-border);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .tarjeta-imagen__miniatura {
@@ -216,10 +395,16 @@ body.visor-abierto { overflow: hidden; }
   aspect-ratio: 4 / 3;
   padding: 0;
   overflow: hidden;
-  background: var(--crema);
-  border: 1px solid #e0dcd3;
-  border-radius: 8px;
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
   cursor: zoom-in;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tarjeta-imagen__miniatura:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--sombra-sm);
 }
 
 .tarjeta-imagen__miniatura img {
@@ -227,65 +412,92 @@ body.visor-abierto { overflow: hidden; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.tarjeta-imagen:hover .tarjeta-imagen__miniatura img { transform: scale(1.05); }
+.tarjeta-imagen:hover .tarjeta-imagen__miniatura img {
+  transform: scale(1.05);
+}
 
 .tarjeta-imagen__miniatura:focus-visible {
-  outline: 3px solid var(--realce);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
-/* ---------- Glosario ---------- */
-.termino {
+/* =====================================================================
+   6. GLOSARIO DE TÉRMINOS
+   ===================================================================== */
+.glosario-lista {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(10rem, 20rem);
-  align-items: start;
-  gap: 1rem clamp(1.5rem, 4vw, 3.5rem);
-  padding-block: 2rem;
-  border-top: 1px solid var(--linea);
-  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
 }
 
-.termino:first-child { border-top: 0; }
+.termino {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(10rem, 18rem);
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--sombra-sm);
+  scroll-margin-top: calc(var(--menu-alto) + 1rem);
+  transition: all 0.2s ease;
+}
+
+.termino:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--sombra-md);
+}
 
 .termino__info h3 {
   margin: 0;
-  color: var(--azul-encabezado);
+  color: var(--text-main);
   font-family: var(--fuente-titulos);
   font-weight: 700;
-  font-size: 1.35rem;
-  line-height: 1.2;
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
 }
 
 .termino__alias {
-  margin: 0.4rem 0 0;
-  color: var(--tinta-suave);
-  font-size: 1rem;
-  font-style: italic;
+  display: inline-block;
+  margin: 0.5rem 0 0;
+  padding: 0.2rem 0.65rem;
+  background: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--color-indigo);
+  font-family: var(--fuente-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
   line-height: 1.4;
 }
 
 .termino__definicion {
-  margin: 0.6rem 0 0;
-  max-width: 62ch;
-  line-height: 1.7;
+  margin: 0.75rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.96rem;
+  line-height: 1.65;
 }
 
 .termino__imagen {
   width: 100%;
-  height: 220px;
+  height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: 6px;
-  background-color: var(--crema);
-  border: 1px solid #e0dcd3;
+  border-radius: var(--radius-md);
+  background-color: var(--bg-card-subtle);
+  border: 1px solid var(--border-subtle);
 }
 
-.termino__imagen:empty { display: none; }
+.termino__imagen:empty {
+  display: none;
+}
 
 .imagen-concepto {
   width: 100%;
@@ -294,144 +506,182 @@ body.visor-abierto { overflow: hidden; }
   object-position: center;
   display: block;
   cursor: zoom-in;
+  transition: transform 0.3s ease;
 }
 
-/* ---------- Visor ampliado (lightbox + blur) ---------- */
+.termino:hover .imagen-concepto {
+  transform: scale(1.04);
+}
+
+/* =====================================================================
+   7. VISOR AMPLIADO (Lightbox con Desenfoque)
+   ===================================================================== */
 .visor {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(0, 20, 45, 0.55);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.78);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   opacity: 0;
-  transition: opacity 0.25s;
+  transition: opacity 0.25s ease;
 }
 
-.visor[hidden] { display: none; }
-.visor.visible { opacity: 1; }
+.visor[hidden] {
+  display: none;
+}
+
+.visor.visible {
+  opacity: 1;
+}
 
 .visor__imagen {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  transform: scale(0.94);
-  transition: transform 0.25s;
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.visor.visible .visor__imagen { transform: scale(1); }
+.visor.visible .visor__imagen {
+  transform: scale(1);
+}
 
 .visor__cerrar {
   position: absolute;
-  top: 1rem;
-  right: 1.25rem;
+  top: 1.25rem;
+  right: 1.5rem;
   width: 2.75rem;
   height: 2.75rem;
-  color: #fff;
-  font-size: 2rem;
+  color: #FFFFFF;
+  font-size: 1.75rem;
   line-height: 1;
-  background: rgba(0, 0, 0, 0.4);
-  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.visor__cerrar:hover { background: rgba(0, 0, 0, 0.65); }
-.visor__cerrar:focus-visible { outline: 3px solid var(--realce); }
-
-/* ---------- Pie ---------- */
-.pie {
-  padding: 0 clamp(1.25rem, 5vw, 3rem) 3rem;
-  max-width: 68rem;
-  margin: 0 auto;
+.visor__cerrar:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.08);
 }
 
-.pie a {
-  color: var(--azul-menu);
-  font-family: var(--fuente-titulos);
-  font-weight: 500;
-}
-
-/* ---------- Móvil ---------- */
-@media (max-width: 720px) {
-  .termino { grid-template-columns: 1fr; padding-block: 1.5rem; }
-  .termino__imagen { max-width: 100%; }
-
-  .tarjeta-imagen {
-    grid-template-columns: minmax(0, 1fr) 7.5rem;
-    gap: 1rem;
-    padding: 1rem;
-  }
+.visor__cerrar:focus-visible {
+  outline: 2px solid var(--color-cyan);
 }
 
 /* =====================================================================
-   BÚSQUEDA AVANZADA
-   Formulario, indicador de carga y tarjetas de resultados.
-   Usa la misma paleta, tipografías y tarjetas blancas del resto del sitio.
+   8. PIE DE PÁGINA
    ===================================================================== */
-
-/* ---------- Formulario ---------- */
-.busqueda-form {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-  padding: 1.25rem;
-  background: #fff;
-  border: 1px solid #e0dcd3;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+.pie {
+  padding: 3rem clamp(1.25rem, 5vw, 3rem);
+  max-width: 72rem;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid var(--border-subtle);
 }
 
-.busqueda-form label {
-  color: var(--azul-encabezado);
+.pie a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
   font-family: var(--fuente-titulos);
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
 }
 
-.busqueda-form textarea {
+.pie a:hover {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary-border);
+  transform: translateY(-1px);
+}
+
+/* =====================================================================
+   9. BÚSQUEDA AVANZADA (Consola de Inferencia ML)
+   ===================================================================== */
+.busqueda-form,
+#busqueda-avanzada .busqueda-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.75rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--sombra-sm);
+}
+
+.busqueda-form label,
+#busqueda-avanzada .busqueda-form label {
+  color: var(--text-main);
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.busqueda-form textarea,
+#busqueda-avanzada .busqueda-form textarea {
   display: block;
   width: 100%;
-  min-height: 9rem;
-  padding: 0.85rem 1rem;
-  color: var(--tinta);
+  min-height: 8.5rem;
+  padding: 1rem 1.15rem;
+  color: var(--text-main);
   font-family: var(--fuente-texto);
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   line-height: 1.6;
-  background: var(--crema);
-  border: 1px solid var(--linea);
-  border-radius: 8px;
+  background: var(--bg-app);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
   resize: vertical;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
-.busqueda-form textarea::placeholder {
-  color: var(--tinta-suave);
-  opacity: 0.75;
+.busqueda-form textarea::placeholder,
+#busqueda-avanzada .busqueda-form textarea::placeholder {
+  color: var(--text-muted);
 }
 
-.busqueda-form textarea:hover { border-color: var(--azul-menu); }
-
-.busqueda-form textarea:focus-visible {
-  background: #fff;
-  border-color: var(--azul-menu);
-  outline: 3px solid var(--realce);
-  outline-offset: 1px;
+.busqueda-form textarea:hover,
+#busqueda-avanzada .busqueda-form textarea:hover {
+  border-color: var(--text-muted);
 }
 
-.busqueda-form textarea[aria-invalid="true"] {
-  border-color: #B3261E;
-  background: #FDF3F2;
+.busqueda-form textarea:focus-visible,
+#busqueda-avanzada .busqueda-form textarea:focus-visible {
+  background: #FFFFFF;
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
 }
 
-.busqueda-acciones {
+.busqueda-form textarea[aria-invalid="true"],
+#busqueda-avanzada .busqueda-form textarea[aria-invalid="true"] {
+  border-color: var(--color-danger);
+  background: var(--color-danger-light);
+}
+
+.busqueda-acciones,
+#busqueda-avanzada .busqueda-acciones {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -439,76 +689,91 @@ body.visor-abierto { overflow: hidden; }
   flex-wrap: wrap;
 }
 
-.busqueda-contador {
-  color: var(--tinta-suave);
-  font-family: var(--fuente-titulos);
+.busqueda-contador,
+#busqueda-avanzada .busqueda-contador {
+  color: var(--text-muted);
+  font-family: var(--fuente-mono);
   font-size: 0.85rem;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
-.busqueda-contador--limite {
-  color: #B3261E;
+.busqueda-contador--limite,
+#busqueda-avanzada .busqueda-contador--limite {
+  color: var(--color-danger);
   font-weight: 700;
 }
 
-/* ---------- Botón Analizar ---------- */
-.busqueda-boton {
+/* Botón Analizar / Ejecutar Inferencia */
+.busqueda-boton,
+#busqueda-avanzada .busqueda-boton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.9rem;
-  padding: 0 1.9rem;
-  color: #fff;
+  min-height: 2.85rem;
+  padding: 0 2rem;
+  color: #FFFFFF;
   font-family: var(--fuente-titulos);
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
   letter-spacing: 0.01em;
-  background: var(--azul-encabezado);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1D4ED8 100%);
   border: 0;
-  border-bottom: 3px solid var(--realce);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.28);
+  transition: all 0.2s ease;
 }
 
-.busqueda-boton:hover:not(:disabled) {
-  background: var(--azul-menu);
-  box-shadow: 0 6px 16px rgba(0, 43, 91, 0.22);
+.busqueda-boton:hover:not(:disabled),
+#busqueda-avanzada .busqueda-boton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3B82F6 0%, var(--color-primary) 100%);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.38);
+  transform: translateY(-1px);
 }
 
-.busqueda-boton:active:not(:disabled) { transform: translateY(1px); }
+.busqueda-boton:active:not(:disabled),
+#busqueda-avanzada .busqueda-boton:active:not(:disabled) {
+  transform: translateY(1px);
+}
 
-.busqueda-boton:focus-visible {
-  outline: 3px solid var(--realce);
+.busqueda-boton:focus-visible,
+#busqueda-avanzada .busqueda-boton:focus-visible {
+  outline: 2px solid var(--color-cyan);
   outline-offset: 2px;
 }
 
-.busqueda-boton:disabled {
-  opacity: 0.6;
+.busqueda-boton:disabled,
+#busqueda-avanzada .busqueda-boton:disabled {
+  opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-/* ---------- Indicador de carga ---------- */
-.busqueda-carga {
+/* Indicador de carga */
+.busqueda-carga,
+#busqueda-avanzada .busqueda-carga {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-top: 1.25rem;
-  color: var(--azul-menu);
+  color: var(--color-primary);
   font-family: var(--fuente-titulos);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.95rem;
 }
 
-.busqueda-carga[hidden] { display: none; }
+.busqueda-carga[hidden] {
+  display: none;
+}
 
-.busqueda-spinner {
+.busqueda-spinner,
+#busqueda-avanzada .busqueda-spinner {
   flex: 0 0 auto;
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 3px solid var(--linea);
-  border-top-color: var(--realce);
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2.5px solid var(--border-medium);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: busqueda-giro 0.8s linear infinite;
 }
@@ -517,59 +782,61 @@ body.visor-abierto { overflow: hidden; }
   to { transform: rotate(360deg); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .busqueda-spinner { animation-duration: 2.4s; }
-}
-
-/* ---------- Área de resultados ---------- */
-.busqueda-resultados {
+/* Área de resultados */
+.busqueda-resultados,
+#busqueda-avanzada .busqueda-resultados {
   margin-top: 1.5rem;
   transition: opacity 0.2s;
 }
 
-.busqueda-resultados[aria-busy="true"] { opacity: 0.55; }
+.busqueda-resultados[aria-busy="true"] {
+  opacity: 0.6;
+}
 
-.busqueda-resultados h3 {
-  margin: 0 0 0.75rem;
-  color: var(--azul-encabezado);
+.busqueda-resultados h3,
+#busqueda-avanzada .busqueda-resultados h3 {
+  margin: 0 0 0.85rem;
+  color: var(--text-main);
   font-family: var(--fuente-titulos);
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
 }
 
-/* Mensaje de estado (estado inicial, pendiente o error) */
-.busqueda-resultados__mensaje {
+.busqueda-resultados__mensaje,
+#busqueda-avanzada .busqueda-resultados__mensaje {
   margin: 0;
-  padding: 1rem 1.25rem;
-  color: var(--tinta-suave);
+  padding: 1.15rem 1.35rem;
+  color: var(--text-secondary);
   line-height: 1.6;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px dashed var(--linea);
-  border-radius: 10px;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-medium);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
 }
 
-.busqueda-resultados__mensaje[hidden] { display: none; }
+.busqueda-resultados__mensaje[hidden] {
+  display: none;
+}
 
 .busqueda-resultados[data-estado="pendiente"] .busqueda-resultados__mensaje {
-  color: var(--azul-menu);
-  background: #fff;
-  border: 1px solid #e0dcd3;
-  border-left: 4px solid var(--realce);
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+  border: 1px solid var(--color-primary-border);
 }
 
 .busqueda-resultados__mensaje--error,
 .busqueda-resultados[data-estado="error"] .busqueda-resultados__mensaje {
-  color: #8C1D18;
-  font-weight: 700;
-  background: #FDF3F2;
-  border: 1px solid #F0C9C6;
-  border-left: 4px solid #B3261E;
+  color: var(--color-danger-text);
+  font-weight: 600;
+  background: var(--color-danger-light);
+  border: 1px solid var(--color-danger-border);
+  border-left: 4px solid var(--color-danger);
 }
 
-/* Tarjetas de resultado (las crea script.js cuando el backend devuelve resultados) */
+/* Tarjetas de resultado */
 .busqueda-lista {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   gap: 1rem;
   margin: 0;
   padding: 0;
@@ -580,458 +847,854 @@ body.visor-abierto { overflow: hidden; }
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1.25rem;
-  background: #fff;
-  border: 1px solid #e0dcd3;
-  border-top: 4px solid var(--realce);
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s, transform 0.2s;
+  padding: 1.35rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-top: 3px solid var(--color-cyan);
+  border-radius: var(--radius-md);
+  box-shadow: var(--sombra-sm);
+  transition: all 0.2s ease;
 }
 
 .busqueda-tarjeta:hover {
-  box-shadow: 0 8px 20px rgba(0, 43, 91, 0.14);
+  box-shadow: var(--sombra-md);
   transform: translateY(-2px);
 }
 
 .busqueda-tarjeta__titulo {
   margin: 0;
-  color: var(--azul-encabezado);
+  color: var(--text-main);
   font-family: var(--fuente-titulos);
   font-weight: 700;
   font-size: 1.15rem;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
+  line-height: 1.3;
 }
 
 .busqueda-tarjeta__texto {
   margin: 0;
-  color: var(--azul-menu);
+  color: var(--text-secondary);
+  font-size: 0.92rem;
   line-height: 1.6;
-  overflow-wrap: anywhere;
 }
 
 .busqueda-tarjeta__confianza {
   margin-top: auto;
-  color: var(--tinta-suave);
-  font-family: var(--fuente-titulos);
-  font-size: 0.85rem;
-  font-weight: 500;
+  color: var(--color-primary);
+  font-family: var(--fuente-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .busqueda-tarjeta__barra {
   display: block;
   width: 100%;
   height: 6px;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
   overflow: hidden;
-  background: var(--linea);
-  border-radius: 3px;
+  background: var(--bg-card-subtle);
+  border-radius: var(--radius-pill);
 }
 
 .busqueda-tarjeta__barra > span {
   display: block;
   height: 100%;
-  background: var(--azul-menu);
-  border-radius: 3px;
-}
-
-/* ---------- Búsqueda Avanzada: móvil ---------- */
-@media (max-width: 720px) {
-  .busqueda-form { padding: 1rem; }
-
-  .busqueda-form textarea { min-height: 7.5rem; }
-
-  .busqueda-acciones {
-    flex-direction: column-reverse;
-    align-items: stretch;
-    gap: 0.6rem;
-  }
-
-  .busqueda-contador { text-align: right; }
-
-  .busqueda-boton { width: 100%; }
-
-  .busqueda-lista { grid-template-columns: 1fr; }
+  background: linear-gradient(90deg, var(--color-primary), var(--color-cyan));
+  border-radius: var(--radius-pill);
 }
 
 /* =====================================================================
-   BÚSQUEDA LINEAL  ·  MÓDULO MEDISEARCH
-   ---------------------------------------------------------------------
-   Todos los estilos de MEDISEARCH viven bajo "#busqueda-lineal .medisearch",
-   por lo que no pueden afectar a ninguna otra sección de IASEP.
-   - Las variables de MEDISEARCH llevan el prefijo --ms- y se declaran
-     dentro del contenedor (no en :root).
-   - Se conserva el aspecto original de MEDISEARCH (colores, tipografía
-     del sistema, tamaños, tarjetas, botones, SVG y responsive).
-   - Los títulos usan h3 (título del módulo), h4 (secciones), h5
-     (subsecciones) y h6 (registro) porque dentro de IASEP el h2 es el
-     título de la sección "10. Búsqueda Lineal".
+   10. BÚSQUEDA LINEAL · MÓDULO MEDISEARCH (Laboratorio Integrado)
    ===================================================================== */
-
-/* ---------- Contenedor, variables y base ---------- */
 #busqueda-lineal .medisearch {
-  --ms-azul-900: #0b2f5c;
-  --ms-azul-700: #124e9c;
-  --ms-azul-600: #1769c5;
-  --ms-azul-100: #dceafa;
-  --ms-azul-50:  #f0f6fd;
+  --ms-azul-900: #0F172A;
+  --ms-azul-700: #1D4ED8;
+  --ms-azul-600: #2563EB;
+  --ms-azul-100: #DBEAFE;
+  --ms-azul-50:  #EFF6FF;
 
-  --ms-gris-900: #1f2933;
-  --ms-gris-700: #4a5563;
-  --ms-gris-600: #5f6b7a;
-  --ms-gris-300: #d3d9e1;
-  --ms-gris-200: #e4e8ee;
-  --ms-gris-100: #f3f5f8;
+  --ms-gris-900: #0F172A;
+  --ms-gris-700: #475569;
+  --ms-gris-600: #64748B;
+  --ms-gris-300: #CBD5E1;
+  --ms-gris-200: #E2E8F0;
+  --ms-gris-100: #F8FAFC;
 
-  --ms-verde-700: #14783f;
-  --ms-verde-500: #22a35d;
-  --ms-verde-100: #ddf3e6;
+  --ms-verde-700: #047857;
+  --ms-verde-500: #10B981;
+  --ms-verde-100: #D1FAE5;
 
-  --ms-rojo-700: #b83232;
-  --ms-rojo-400: #e07272;
-  --ms-rojo-100: #fce8e8;
+  --ms-rojo-700: #B91C1C;
+  --ms-rojo-400: #EF4444;
+  --ms-rojo-100: #FEE2E2;
 
-  --ms-radio: 10px;
-  --ms-fuente: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --ms-radio: 12px;
+  --ms-fuente: var(--fuente-texto);
 
-  /* Restablece la tipografía base de MEDISEARCH (IASEP usa otra) */
   margin-top: 1.5rem;
-  overflow: hidden;            /* respaldo para navegadores sin "clip" */
-  overflow: clip;              /* recorta esquinas sin romper el sticky interno */
+  overflow: clip;
   font-family: var(--ms-fuente);
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 0.98rem;
   color: var(--ms-gris-900);
-  background: #fff;
-  line-height: 1.55;
-  border: 1px solid var(--ms-gris-200);
-  border-radius: var(--ms-radio);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: var(--bg-card);
+  line-height: 1.6;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--sombra-md);
 }
 
 #busqueda-lineal .medisearch h3,
 #busqueda-lineal .medisearch h4,
 #busqueda-lineal .medisearch h5,
 #busqueda-lineal .medisearch h6 {
-  margin: 0 0 .75rem;
-  padding: 0;
+  margin: 0 0 0.75rem;
   color: var(--ms-azul-900);
-  font-family: inherit;
+  font-family: var(--fuente-titulos);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
-/* h3 = antiguo h1 de MEDISEARCH */
-#busqueda-lineal .medisearch h3 { font-size: clamp(2.2rem, 5vw, 3.2rem); letter-spacing: -.01em; }
-/* h4 = antiguo h2 */
-#busqueda-lineal .medisearch h4 { font-size: clamp(1.5rem, 3vw, 1.9rem); margin-bottom: 1.25rem; }
-/* h5 = antiguo h3 */
-#busqueda-lineal .medisearch h5 { font-size: 1.15rem; }
-/* h6 = antiguo h4 */
-#busqueda-lineal .medisearch h6 { font-size: 1rem; }
+#busqueda-lineal .medisearch h3 {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  letter-spacing: -0.025em;
+}
 
-#busqueda-lineal .medisearch p { margin: 0 0 1rem; }
+#busqueda-lineal .medisearch h4 {
+  font-size: clamp(1.4rem, 2.8vw, 1.8rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
 
-#busqueda-lineal .medisearch .wrap { width: min(1120px, 100% - 2rem); margin-inline: auto; }
+#busqueda-lineal .medisearch h5 {
+  font-size: 1.15rem;
+}
+
+#busqueda-lineal .medisearch h6 {
+  font-size: 0.98rem;
+}
+
+#busqueda-lineal .medisearch p {
+  margin: 0 0 1rem;
+}
+
+#busqueda-lineal .medisearch .wrap {
+  width: min(1120px, 100% - 2.5rem);
+  margin-inline: auto;
+}
 
 #busqueda-lineal .medisearch .solo-lectores {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); white-space: nowrap;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
-#busqueda-lineal .medisearch :focus-visible { outline: 3px solid var(--ms-azul-600); outline-offset: 2px; }
+#busqueda-lineal .medisearch :focus-visible {
+  outline: 2px solid var(--ms-azul-600);
+  outline-offset: 2px;
+}
 
-/* Anclas internas: compensan el menú de IASEP (sticky) y la barra del módulo */
 #busqueda-lineal .medisearch #ms-inicio,
 #busqueda-lineal .medisearch #ms-busqueda,
 #busqueda-lineal .medisearch #ms-resultados,
 #busqueda-lineal .medisearch #ms-como-funciona {
-  scroll-margin-top: calc(var(--menu-alto) + 0.5rem);
+  scroll-margin-top: calc(var(--menu-alto) + 1rem);
 }
 
-/* ---------- Encabezado del módulo ---------- */
-#busqueda-lineal .medisearch .topbar { background: #fff; border-bottom: 1px solid var(--ms-gris-200); }
+/* Encabezado interno del módulo */
+#busqueda-lineal .medisearch .topbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--ms-gris-200);
+}
 
 #busqueda-lineal .medisearch .topbar__inner {
-  width: min(1120px, 100% - 2rem);
+  width: min(1120px, 100% - 2.5rem);
   margin-inline: auto;
-  padding: .75rem 0;
-  display: flex; flex-wrap: wrap; align-items: center;
-  justify-content: space-between; gap: .5rem 1.5rem;
+  padding: 0.85rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
 }
 
 #busqueda-lineal .medisearch .brand {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .6rem;
-  color: var(--ms-azul-900); text-decoration: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  color: var(--ms-azul-900);
+  text-decoration: none;
 }
-#busqueda-lineal .medisearch .brand__icon { width: 34px; height: 34px; color: var(--ms-azul-600); flex: none; }
-#busqueda-lineal .medisearch .brand__name { font-weight: 800; font-size: 1.25rem; letter-spacing: .04em; }
-#busqueda-lineal .medisearch .brand__sep  { color: var(--ms-gris-300); }
-#busqueda-lineal .medisearch .brand__tag  { color: var(--ms-gris-700); font-size: .95rem; }
 
-#busqueda-lineal .medisearch .nav { display: flex; flex-wrap: wrap; gap: .25rem; }
+#busqueda-lineal .medisearch .brand__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--ms-azul-600);
+  flex: none;
+}
+
+#busqueda-lineal .medisearch .brand__name {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+#busqueda-lineal .medisearch .brand__sep {
+  color: var(--ms-gris-300);
+}
+
+#busqueda-lineal .medisearch .brand__tag {
+  color: var(--ms-gris-600);
+  font-size: 0.9rem;
+}
+
+#busqueda-lineal .medisearch .nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
 #busqueda-lineal .medisearch .nav a {
-  padding: .4rem .85rem; border-radius: 999px;
-  color: var(--ms-gris-700); text-decoration: none; font-weight: 500;
-}
-#busqueda-lineal .medisearch .nav a:hover { background: var(--ms-azul-50); color: var(--ms-azul-700); }
-
-/* La barra del módulo se queda fija justo debajo del menú de IASEP */
-@media (min-width: 900px) {
-  #busqueda-lineal .medisearch .topbar { position: sticky; top: var(--menu-alto); z-index: 9; }
-
-  #busqueda-lineal .medisearch #ms-inicio,
-  #busqueda-lineal .medisearch #ms-busqueda,
-  #busqueda-lineal .medisearch #ms-resultados,
-  #busqueda-lineal .medisearch #ms-como-funciona {
-    scroll-margin-top: calc(var(--menu-alto) + 5rem);
-  }
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  color: var(--ms-gris-700);
+  text-decoration: none;
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 }
 
-/* ---------- Botones y formularios ---------- */
+#busqueda-lineal .medisearch .nav a:hover {
+  background: var(--ms-azul-50);
+  color: var(--ms-azul-700);
+}
+
+/* Botones unificados de MediSearch */
 #busqueda-lineal .medisearch .btn {
-  display: inline-block;
-  font: inherit; font-weight: 600; text-decoration: none; text-align: center;
-  padding: .6rem 1.1rem; border-radius: 8px;
-  border: 1.5px solid transparent; cursor: pointer;
-  transition: background-color .15s, border-color .15s, color .15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  text-align: center;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
 }
-#busqueda-lineal .medisearch .btn--primary { background: var(--ms-azul-600); color: #fff; }
-#busqueda-lineal .medisearch .btn--primary:hover:not(:disabled) { background: var(--ms-azul-700); }
-#busqueda-lineal .medisearch .btn--ghost { background: #fff; color: var(--ms-gris-900); border-color: var(--ms-gris-300); }
-#busqueda-lineal .medisearch .btn--ghost:hover:not(:disabled) { border-color: var(--ms-azul-600); color: var(--ms-azul-700); }
-#busqueda-lineal .medisearch .btn--sm { padding: .4rem .85rem; font-size: .95rem; }
-#busqueda-lineal .medisearch .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+#busqueda-lineal .medisearch .btn--primary {
+  background: linear-gradient(135deg, var(--ms-azul-600) 0%, var(--ms-azul-700) 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+}
+
+#busqueda-lineal .medisearch .btn--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3B82F6 0%, var(--ms-azul-600) 100%);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+#busqueda-lineal .medisearch .btn--ghost {
+  background: var(--bg-card);
+  color: var(--ms-gris-900);
+  border-color: var(--ms-gris-300);
+}
+
+#busqueda-lineal .medisearch .btn--ghost:hover:not(:disabled) {
+  border-color: var(--ms-azul-600);
+  color: var(--ms-azul-700);
+  background: var(--ms-azul-50);
+}
+
+#busqueda-lineal .medisearch .btn--sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.88rem;
+  border-radius: var(--radius-sm);
+}
+
+#busqueda-lineal .medisearch .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
 
 #busqueda-lineal .medisearch label {
-  display: block; font-family: inherit; font-weight: 600; font-size: .95rem;
-  margin-bottom: .35rem; color: inherit;
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.4rem;
 }
 
 #busqueda-lineal .medisearch select,
 #busqueda-lineal .medisearch input[type="text"] {
-  width: 100%; font: inherit; color: inherit;
-  padding: .6rem .75rem; background: #fff;
-  border: 1.5px solid var(--ms-gris-300); border-radius: 8px;
+  width: 100%;
+  font-family: var(--fuente-texto);
+  font-size: 0.95rem;
+  padding: 0.65rem 0.85rem;
+  background: #FFFFFF;
+  border: 1px solid var(--ms-gris-300);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
+
+#busqueda-lineal .medisearch select:focus,
+#busqueda-lineal .medisearch input[type="text"]:focus {
+  border-color: var(--ms-azul-600);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
 #busqueda-lineal .medisearch select:disabled,
-#busqueda-lineal .medisearch input:disabled { background: var(--ms-gris-100); color: var(--ms-gris-600); }
+#busqueda-lineal .medisearch input:disabled {
+  background: var(--ms-gris-100);
+  color: var(--ms-gris-600);
+}
 
-#busqueda-lineal .medisearch .hint { font-size: .9rem; color: var(--ms-gris-600); margin: .75rem 0 0; }
+#busqueda-lineal .medisearch .hint {
+  font-size: 0.88rem;
+  color: var(--ms-gris-600);
+  margin: 0.75rem 0 0;
+}
 
-/* ---------- Tarjetas y secciones ---------- */
+/* Tarjetas y secciones de MediSearch */
 #busqueda-lineal .medisearch .card {
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--ms-gris-200);
   border-radius: var(--ms-radio);
-  padding: 1.25rem;
-  /* Neutraliza el hover/transición de otras "tarjetas" de IASEP si se reutilizara la clase */
-  box-shadow: none;
-  transform: none;
+  padding: 1.5rem;
+  box-shadow: var(--sombra-sm);
 }
 
-#busqueda-lineal .medisearch .section { padding: 3.5rem 0; }
-#busqueda-lineal .medisearch .section--gris { background: var(--ms-gris-100); }
+#busqueda-lineal .medisearch .section {
+  padding: 3.5rem 0;
+}
 
-/* ---------- Presentación del módulo ---------- */
+#busqueda-lineal .medisearch .section--gris {
+  background: var(--ms-gris-100);
+}
+
+/* Presentación del módulo (Hero interno) */
 #busqueda-lineal .medisearch .hero {
-  background: var(--ms-azul-50); padding: 3.5rem 0; border-bottom: 1px solid var(--ms-azul-100);
+  background: linear-gradient(135deg, var(--ms-azul-50) 0%, #FFFFFF 100%);
+  padding: 3.5rem 0;
+  border-bottom: 1px solid var(--ms-azul-100);
 }
 
 #busqueda-lineal .medisearch .hero__grid {
-  display: grid; grid-template-columns: 1.1fr 1fr;
-  gap: 2.5rem; align-items: center;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 3rem;
+  align-items: center;
 }
-#busqueda-lineal .medisearch .hero__texto { max-width: 60ch; }
-#busqueda-lineal .medisearch .lead { font-size: 1.2rem; color: var(--ms-gris-700); }
+
+#busqueda-lineal .medisearch .hero__texto {
+  max-width: 60ch;
+}
+
+#busqueda-lineal .medisearch .lead {
+  font-size: 1.15rem;
+  color: var(--ms-gris-700);
+  line-height: 1.6;
+}
+
 #busqueda-lineal .medisearch .algo {
-  display: inline-block; padding: .45rem .9rem; margin-bottom: 1rem;
-  background: #fff; border: 1.5px solid var(--ms-azul-600);
-  border-radius: 8px; color: var(--ms-azul-900);
+  display: inline-block;
+  padding: 0.45rem 0.95rem;
+  margin-bottom: 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--ms-azul-600);
+  border-radius: var(--radius-sm);
+  color: var(--ms-azul-900);
+  font-family: var(--fuente-mono);
+  font-size: 0.88rem;
+  font-weight: 600;
 }
-#busqueda-lineal .medisearch .hero__figura { margin: 0; }
-#busqueda-lineal .medisearch .hero__figura svg { width: 100%; height: auto; display: block; }
+
+#busqueda-lineal .medisearch .hero__figura {
+  margin: 0;
+}
+
+#busqueda-lineal .medisearch .hero__figura svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 #busqueda-lineal .medisearch .hero__figura figcaption {
-  font-size: .9rem; color: var(--ms-gris-600); margin-top: .5rem; max-width: 52ch;
+  font-size: 0.88rem;
+  color: var(--ms-gris-600);
+  margin-top: 0.75rem;
 }
 
 #busqueda-lineal .medisearch .f-no rect    { fill: var(--ms-rojo-100);  stroke: var(--ms-rojo-400);  stroke-width: 2; }
 #busqueda-lineal .medisearch .f-si rect    { fill: var(--ms-verde-100); stroke: var(--ms-verde-500); stroke-width: 2; }
 #busqueda-lineal .medisearch .f-ahora rect { fill: var(--ms-azul-600);  stroke: var(--ms-azul-700);  stroke-width: 2; }
-#busqueda-lineal .medisearch .f-pend rect  { fill: #fff;                stroke: var(--ms-gris-300);  stroke-width: 2; }
+#busqueda-lineal .medisearch .f-pend rect  { fill: #FFFFFF;             stroke: var(--ms-gris-300);  stroke-width: 2; }
 #busqueda-lineal .medisearch .f-flecha { fill: var(--ms-azul-600); }
-#busqueda-lineal .medisearch .f-texto  { fill: var(--ms-azul-700); font: 600 14px var(--ms-fuente); }
+#busqueda-lineal .medisearch .f-texto  { fill: var(--ms-azul-700); font: 600 14px var(--fuente-mono); }
 
-@media (max-width: 800px) {
-  #busqueda-lineal .medisearch .hero__grid { grid-template-columns: 1fr; }
-}
-
-/* ---------- Formulario de búsqueda de expedientes ---------- */
+/* Formulario */
 #busqueda-lineal .medisearch .form {
-  display: grid; grid-template-columns: minmax(200px, 260px) 1fr auto;
-  gap: 1rem; align-items: end; margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) 1fr auto;
+  gap: 1.25rem;
+  align-items: end;
+  margin-bottom: 1.5rem;
 }
-#busqueda-lineal .medisearch .form__acciones { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+#busqueda-lineal .medisearch .form__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 #busqueda-lineal .medisearch .form .hint,
-#busqueda-lineal .medisearch .form__msg { grid-column: 1 / -1; margin: 0; }
-#busqueda-lineal .medisearch .form__msg { color: var(--ms-rojo-700); font-weight: 600; min-height: 0; }
-#busqueda-lineal .medisearch .form__msg:empty { display: none; }
-
-@media (max-width: 800px) {
-  #busqueda-lineal .medisearch .form { grid-template-columns: 1fr; }
+#busqueda-lineal .medisearch .form__msg {
+  grid-column: 1 / -1;
+  margin: 0;
 }
 
-/* ---------- Visualización ---------- */
+#busqueda-lineal .medisearch .form__msg {
+  color: var(--ms-rojo-700);
+  font-weight: 600;
+  min-height: 0;
+}
+
+/* Visualización */
 #busqueda-lineal .medisearch .viz__cabecera {
-  display: flex; flex-wrap: wrap; align-items: center;
-  justify-content: space-between; gap: .75rem 1.5rem; margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-bottom: 1.25rem;
 }
-#busqueda-lineal .medisearch .viz__cabecera h5 { margin: 0; }
 
-#busqueda-lineal .medisearch .controles { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
-#busqueda-lineal .medisearch .velocidad {
-  display: flex; align-items: center; gap: .5rem;
-  margin: 0 0 0 .5rem; font-weight: 600; white-space: nowrap;
+#busqueda-lineal .medisearch .viz__cabecera h5 {
+  margin: 0;
 }
-#busqueda-lineal .medisearch .velocidad select { width: auto; padding: .35rem .6rem; }
+
+#busqueda-lineal .medisearch .controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#busqueda-lineal .medisearch .velocidad {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0 0.5rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+#busqueda-lineal .medisearch .velocidad select {
+  width: auto;
+  padding: 0.35rem 0.65rem;
+}
 
 /* Barra de progreso */
-#busqueda-lineal .medisearch .progreso { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-#busqueda-lineal .medisearch .progreso__barra {
-  flex: 1; height: 12px; background: var(--ms-gris-200);
-  border-radius: 999px; overflow: hidden;
+#busqueda-lineal .medisearch .progreso {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
-#busqueda-lineal .medisearch .progreso__relleno {
-  display: block; height: 100%; width: 0;
-  background: var(--ms-azul-600); transition: width .2s;
-}
-#busqueda-lineal .medisearch .progreso__texto { font-size: .9rem; color: var(--ms-gris-700); white-space: nowrap; }
 
-/* Panel de comparación actual */
-#busqueda-lineal .medisearch .comparacion {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: .75rem; margin: 0 0 1rem; padding: 1rem;
-  background: var(--ms-azul-50); border: 1px solid var(--ms-azul-100); border-radius: 8px;
+#busqueda-lineal .medisearch .progreso__barra {
+  flex: 1;
+  height: 10px;
+  background: var(--ms-gris-200);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
 }
-#busqueda-lineal .medisearch .comparacion dt { font-size: .8rem; color: var(--ms-gris-600); }
-#busqueda-lineal .medisearch .comparacion dd { margin: 0; font-weight: 700; font-size: 1.05rem; overflow-wrap: anywhere; }
+
+#busqueda-lineal .medisearch .progreso__relleno {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--ms-azul-600), var(--color-cyan));
+  border-radius: var(--radius-pill);
+  transition: width 0.2s ease;
+}
+
+#busqueda-lineal .medisearch .progreso__texto {
+  font-family: var(--fuente-mono);
+  font-size: 0.88rem;
+  color: var(--ms-gris-700);
+  white-space: nowrap;
+}
+
+/* Panel de comparación */
+#busqueda-lineal .medisearch .comparacion {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.85rem;
+  margin: 0 0 1.25rem;
+  padding: 1.25rem;
+  background: var(--ms-azul-50);
+  border: 1px solid var(--ms-azul-100);
+  border-radius: var(--radius-md);
+}
+
+#busqueda-lineal .medisearch .comparacion dt {
+  font-size: 0.8rem;
+  color: var(--ms-gris-600);
+  font-family: var(--fuente-titulos);
+}
+
+#busqueda-lineal .medisearch .comparacion dd {
+  margin: 0;
+  font-family: var(--fuente-mono);
+  font-weight: 700;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+
 #busqueda-lineal .medisearch #p-resultado.res--examinando { color: var(--ms-azul-700); }
 #busqueda-lineal .medisearch #p-resultado.res--coincide   { color: var(--ms-verde-700); }
 #busqueda-lineal .medisearch #p-resultado.res--descartado { color: var(--ms-rojo-700); }
 
 /* Leyenda de colores */
 #busqueda-lineal .medisearch .leyenda {
-  display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
-  list-style: none; margin: 0 0 1rem; padding: 0; font-size: .9rem; color: var(--ms-gris-700);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  font-size: 0.88rem;
+  color: var(--ms-gris-700);
 }
-#busqueda-lineal .medisearch .leyenda li { display: flex; align-items: center; gap: .4rem; }
-#busqueda-lineal .medisearch .muestra { width: 16px; height: 16px; border-radius: 4px; border: 2px solid; }
+
+#busqueda-lineal .medisearch .leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+#busqueda-lineal .medisearch .muestra {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 2px solid;
+}
+
 #busqueda-lineal .medisearch .muestra--pendiente  { background: var(--ms-gris-100); border-color: var(--ms-gris-300); }
 #busqueda-lineal .medisearch .muestra--examinando { background: var(--ms-azul-600); border-color: var(--ms-azul-700); }
 #busqueda-lineal .medisearch .muestra--coincide   { background: var(--ms-verde-100); border-color: var(--ms-verde-500); }
 #busqueda-lineal .medisearch .muestra--descartado { background: var(--ms-rojo-100); border-color: var(--ms-rojo-400); }
 
-/* Expedientes (cuadrícula del recorrido) */
+/* Expedientes (Chips) */
 #busqueda-lineal .medisearch .chips {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: .6rem; list-style: none; margin: 0 0 1.25rem; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
 }
-#busqueda-lineal .medisearch .chip {
-  position: relative; display: grid; gap: .1rem;
-  padding: .6rem .75rem; border: 2px solid; border-radius: 8px;
-  font-size: .9rem; transition: background-color .15s, border-color .15s, color .15s;
-}
-#busqueda-lineal .medisearch .chip__pos { position: absolute; top: .4rem; right: .6rem; font-size: .75rem; opacity: .75; }
-#busqueda-lineal .medisearch .chip__id  { font-weight: 700; }
-#busqueda-lineal .medisearch .chip__estado { margin-top: .25rem; font-size: .8rem; font-weight: 700; }
 
-/* El dato que se está comparando se resalta según el criterio elegido */
+#busqueda-lineal .medisearch .chip {
+  position: relative;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.75rem 0.85rem;
+  border: 1.5px solid;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  transition: all 0.15s ease;
+}
+
+#busqueda-lineal .medisearch .chip__pos {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.6rem;
+  font-family: var(--fuente-mono);
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+#busqueda-lineal .medisearch .chip__id {
+  font-family: var(--fuente-mono);
+  font-weight: 700;
+}
+
+#busqueda-lineal .medisearch .chip__estado {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
 #busqueda-lineal .medisearch .chips[data-criterio="id"]         .chip__id,
 #busqueda-lineal .medisearch .chips[data-criterio="nombre"]     .chip__nombre,
 #busqueda-lineal .medisearch .chips[data-criterio="enfermedad"] .chip__enfermedad {
-  text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
 }
 
 #busqueda-lineal .medisearch .chip--pendiente  { background: var(--ms-gris-100); border-color: var(--ms-gris-300); color: var(--ms-gris-600); }
-#busqueda-lineal .medisearch .chip--examinando { background: var(--ms-azul-600); border-color: var(--ms-azul-700); color: #fff; }
+#busqueda-lineal .medisearch .chip--examinando { background: var(--ms-azul-600); border-color: var(--ms-azul-700); color: #FFFFFF; box-shadow: 0 0 12px rgba(37, 99, 235, 0.4); }
 #busqueda-lineal .medisearch .chip--coincide   { background: var(--ms-verde-100); border-color: var(--ms-verde-500); color: var(--ms-verde-700); }
 #busqueda-lineal .medisearch .chip--descartado { background: var(--ms-rojo-100); border-color: var(--ms-rojo-400); color: var(--ms-rojo-700); }
 
 /* Registro de comparaciones */
-#busqueda-lineal .medisearch .viz__subtitulo { margin-bottom: .5rem; }
-#busqueda-lineal .medisearch .registro {
-  max-height: 11rem; overflow-y: auto; margin: 0; padding: .5rem .75rem .5rem 2.25rem;
-  background: var(--ms-gris-100); border-radius: 8px; font-size: .9rem;
-}
-#busqueda-lineal .medisearch .registro li {
-  padding: .15rem 0 .15rem .5rem; border-left: 3px solid var(--ms-gris-300); margin-bottom: .2rem;
-}
-#busqueda-lineal .medisearch .registro li.reg--coincide   { border-left-color: var(--ms-verde-500); }
-#busqueda-lineal .medisearch .registro li.reg--descartado { border-left-color: var(--ms-rojo-400); }
-#busqueda-lineal .medisearch .registro:empty::before {
-  content: "Aún no se ha realizado ninguna comparación."; color: var(--ms-gris-600); margin-left: -1.5rem;
+#busqueda-lineal .medisearch .viz__subtitulo {
+  margin-bottom: 0.6rem;
 }
 
-/* ---------- Resultados ---------- */
+#busqueda-lineal .medisearch .registro {
+  max-height: 12rem;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0.65rem 0.85rem 0.65rem 2.25rem;
+  background: var(--ms-gris-100);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-family: var(--fuente-mono);
+  font-size: 0.85rem;
+}
+
+#busqueda-lineal .medisearch .registro li {
+  padding: 0.2rem 0 0.2rem 0.5rem;
+  border-left: 3px solid var(--ms-gris-300);
+  margin-bottom: 0.25rem;
+}
+
+#busqueda-lineal .medisearch .registro li.reg--coincide   { border-left-color: var(--ms-verde-500); }
+#busqueda-lineal .medisearch .registro li.reg--descartado { border-left-color: var(--ms-rojo-400); }
+
+#busqueda-lineal .medisearch .registro:empty::before {
+  content: "Aún no se ha realizado ninguna comparación.";
+  color: var(--ms-gris-600);
+  margin-left: -1.5rem;
+  font-family: var(--fuente-texto);
+}
+
+/* Resultados & Tabla */
 #busqueda-lineal .medisearch .estado {
-  display: inline-block; padding: .5rem .9rem; margin-bottom: 1rem;
-  background: var(--ms-azul-50); border: 1px solid var(--ms-azul-100);
-  border-radius: 8px; color: var(--ms-azul-900); font-weight: 600;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+  background: var(--ms-azul-50);
+  border: 1px solid var(--ms-azul-100);
+  border-radius: var(--radius-sm);
+  color: var(--ms-azul-900);
+  font-weight: 600;
+  font-size: 0.92rem;
 }
 
 #busqueda-lineal .medisearch .tabla-envoltura {
-  overflow-x: auto; margin-bottom: 2rem;
-  border: 1px solid var(--ms-gris-200); border-radius: var(--ms-radio);
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  border: 1px solid var(--ms-gris-200);
+  border-radius: var(--radius-md);
+  box-shadow: var(--sombra-sm);
 }
-#busqueda-lineal .medisearch .tabla { width: 100%; border-collapse: collapse; min-width: 560px; }
+
+#busqueda-lineal .medisearch .tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
 #busqueda-lineal .medisearch .tabla th,
 #busqueda-lineal .medisearch .tabla td {
-  padding: .7rem 1rem; text-align: left; border-bottom: 1px solid var(--ms-gris-200);
+  padding: 0.8rem 1.15rem;
+  text-align: left;
+  border-bottom: 1px solid var(--ms-gris-200);
 }
-#busqueda-lineal .medisearch .tabla th { background: var(--ms-azul-50); color: var(--ms-azul-900); font-size: .9rem; }
-#busqueda-lineal .medisearch .tabla tbody tr:last-child td { border-bottom: 0; }
-#busqueda-lineal .medisearch .tabla .fila-vacia td { color: var(--ms-gris-600); text-align: center; padding: 1.5rem 1rem; }
+
+#busqueda-lineal .medisearch .tabla th {
+  background: var(--ms-azul-50);
+  color: var(--ms-azul-900);
+  font-family: var(--fuente-titulos);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+#busqueda-lineal .medisearch .tabla td:first-child {
+  font-family: var(--fuente-mono);
+  font-weight: 600;
+}
+
+#busqueda-lineal .medisearch .tabla tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+#busqueda-lineal .medisearch .tabla tbody tr:hover {
+  background: rgba(241, 245, 249, 0.6);
+}
+
+#busqueda-lineal .medisearch .tabla .fila-vacia td {
+  color: var(--ms-gris-600);
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
 #busqueda-lineal .medisearch .etiqueta-ok {
-  display: inline-block; padding: .15rem .6rem; border-radius: 999px;
-  background: var(--ms-verde-100); color: var(--ms-verde-700); font-weight: 700; font-size: .85rem;
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: var(--ms-verde-100);
+  color: var(--ms-verde-700);
+  font-family: var(--fuente-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
 }
 
+/* Resumen Estadístico */
 #busqueda-lineal .medisearch .stats {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: .75rem; margin: 0 0 .5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+  margin: 0 0 0.75rem;
 }
+
 #busqueda-lineal .medisearch .stats > div {
-  padding: .9rem 1rem; border: 1px solid var(--ms-gris-200); border-radius: 8px; background: var(--ms-gris-100);
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--ms-gris-200);
+  border-radius: var(--radius-md);
+  background: var(--ms-gris-100);
 }
-#busqueda-lineal .medisearch .stats dt { font-size: .85rem; color: var(--ms-gris-700); }
-#busqueda-lineal .medisearch .stats dd { margin: .2rem 0 0; font-size: 1.6rem; font-weight: 700; color: var(--ms-azul-900); }
-#busqueda-lineal .medisearch .stats__ok { background: var(--ms-verde-100) !important; border-color: var(--ms-verde-500) !important; }
-#busqueda-lineal .medisearch .stats__ok dd { color: var(--ms-verde-700); }
 
-#busqueda-lineal .medisearch .complejidad { margin-top: 2rem; }
+#busqueda-lineal .medisearch .stats dt {
+  font-size: 0.82rem;
+  color: var(--ms-gris-700);
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+}
+
+#busqueda-lineal .medisearch .stats dd {
+  margin: 0.25rem 0 0;
+  font-family: var(--fuente-mono);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--ms-azul-900);
+}
+
+#busqueda-lineal .medisearch .stats__ok {
+  background: var(--ms-verde-100) !important;
+  border-color: var(--ms-verde-500) !important;
+}
+
+#busqueda-lineal .medisearch .stats__ok dd {
+  color: var(--ms-verde-700);
+}
+
+/* Complejidad Algorítmica */
+#busqueda-lineal .medisearch .complejidad {
+  margin-top: 2rem;
+}
+
 #busqueda-lineal .medisearch .complejidad dl {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 0;
 }
-#busqueda-lineal .medisearch .complejidad dt { font-weight: 700; color: var(--ms-azul-700); }
-#busqueda-lineal .medisearch .complejidad dd { margin: .2rem 0 0; color: var(--ms-gris-700); }
 
-/* ---------- Explicación ---------- */
-#busqueda-lineal .medisearch .explicacion { max-width: 760px; }
-#busqueda-lineal .medisearch .explicacion h5 { margin-top: 1.5rem; }
+#busqueda-lineal .medisearch .complejidad dt {
+  font-family: var(--fuente-mono);
+  font-weight: 700;
+  color: var(--ms-azul-700);
+  font-size: 0.98rem;
+}
 
-/* ---------- Nota final del módulo (antes: pie de página de MEDISEARCH) ---------- */
+#busqueda-lineal .medisearch .complejidad dd {
+  margin: 0.35rem 0 0;
+  color: var(--ms-gris-700);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Explicación */
+#busqueda-lineal .medisearch .explicacion {
+  max-width: 780px;
+}
+
+#busqueda-lineal .medisearch .explicacion h5 {
+  margin-top: 1.5rem;
+}
+
+/* Nota final del módulo */
 #busqueda-lineal .medisearch .medisearch__nota {
   margin: 0;
   padding: 1.5rem max(1rem, calc((100% - 1120px) / 2));
   background: var(--ms-azul-900);
-  color: #cfdcf0;
-  font-size: .9rem;
+  color: #94A3B8;
+  font-size: 0.88rem;
 }
 
-/* ---------- Preferencias de movimiento ---------- */
+/* =====================================================================
+   11. ADAPTABILIDAD RESPONSIVE (Móviles y Tablets)
+   ===================================================================== */
+@media (max-width: 800px) {
+  .tarjeta-imagen {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .termino {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+
+  .termino__imagen {
+    max-width: 100%;
+  }
+
+  #busqueda-lineal .medisearch .hero__grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  #busqueda-lineal .medisearch .form {
+    grid-template-columns: 1fr;
+  }
+
+  .busqueda-acciones {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .busqueda-contador {
+    text-align: right;
+  }
+
+  .busqueda-boton {
+    width: 100%;
+  }
+
+  .busqueda-lista {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================================
+   12. PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   ===================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  #busqueda-lineal .medisearch .chip,
-  #busqueda-lineal .medisearch .progreso__relleno,
-  #busqueda-lineal .medisearch .btn { transition: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
